@@ -2,8 +2,7 @@
     name: "spiker_adapter",
     clock_primary: "clk_i",
     reset_primary: "rst_ni",
-    bus_device: "reg",
-    bus_intefaces: "",
+    bus_interfaces: "reg",
 
     regwidth: "32",
     registers: [
