@@ -80,13 +80,22 @@ spiker_adapter_reg_top u_spiker_reader (
 //                                                                      //
 //////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////
+// SPIKER_ADAPTER_REG_2_HW --> reg_file_to_ip :
+//
+// spiker_adapter_reg2hw_spikes_mreg_t [24:0]   spikes; // [803:4]
+// spiker_adapter_reg2hw_ctrl1_reg_t            ctrl1;  // [3:0]
+//
+// spiker_adapter_reg2hw_spikes_mreg_t --> logic[31:0] q;
+//////////////////////////////////////////////////////////////////////////
+
 // New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
 logic [31:0] op_a_signal;
 logic [31:0] op_b_signal;
 
 // Assign the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b to the new signals
-assign op_a_signal = reg_file_to_ip.op_a;
-assign op_b_signal = reg_file_to_ip.op_b;
+assign op_a_signal = reg_file_to_ip.spikes[0].q;
+assign op_b_signal = reg_file_to_ip.spikes[1].q;
 
 // New signals to connect the outputs of spiker_reader
 logic [31:0] spiker_data_out1;
