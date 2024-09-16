@@ -23,6 +23,7 @@
           swaccess: "wo",
           hwaccess: "hro",
           hwext: "true",
+          hwqe: "true",
           fields: [
               { bits: "0", name: "SAMPLE_READY",
                 desc: "Signals the presence of a new sample."
