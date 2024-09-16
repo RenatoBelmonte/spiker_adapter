@@ -1,0 +1,22 @@
+package:
+  name: spiker_adapter 
+  authors:
+    - "Renato Belmonte <renato.belmonte@studenti.polito.it"
+dependencies:
+  #  common_cells:           { git: "https://github.com/pulp-platform/common_cells.git", version: 1.21.0 }
+  axi:                    { git: "https://github.com/pulp-platform/axi.git", version: 0.39.2 }
+  register_interface:     { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.1 }
+sources: 
+  #spiker_adapter
+  defines:
+  files:
+    - gen_sv/spiker_adapter_reg_pkg.sv
+    - gen_sv/spiker_adapter_reg_top.sv
+    - rtl/spiker_reader.vhd
+    - rtl/spiker_adapter_pkg.sv
+    - rtl/spiker_adapter.sv
+    - rtl/spiker_adapter_top.sv
+  include_dirs:
+    - ../register_interface/include 
+  vlog_opts:
+    - -L register_interface_lib

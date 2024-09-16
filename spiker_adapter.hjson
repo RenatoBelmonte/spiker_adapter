@@ -1,0 +1,53 @@
+{
+    name: "spiker_adapter",
+    clock_primary: "clk_i",
+    reset_primary: "rst_ni",
+    bus_device: "reg",
+    bus_host: "",
+
+    regwidth: "32",
+    registers: [
+        { multireg:
+          { name: "SPIKES",
+            desc: "Subword of Spikes",
+            count: "25",
+            cname: "SPIKES",
+            swaccess: "wo",
+            fields: [
+                { bits: "31:0"
+                }
+            ],
+          }
+        },
+        { name: "CTRL1",
+          desc: "Controls handshaking signal of the accelerator.",
+          swaccess: "wo",
+          hwaccess: "hro",
+          hwext: "true",
+          fields: [
+              { bits: "0", name: "SAMPLE_READY",
+                desc: "Signals the presence of a new sample."
+              }
+              { bits: "1", name: "SAMPLE",
+                desc: "Notifies that the spikes are read."
+              }
+          ]
+        },
+        { name: "STATUS",
+          desc: "Contains the current status of the accelerator.",
+          swaccess: "ro",
+          hwaccess: "hwo",
+          hwext: "true",
+          fields: [
+              { bits: "1:0", name: "CODE",
+                desc: "The current status code of the accelerator.",
+                enum: [
+                    { value: "0", name: "IDLE", desc: "Accelerator is idle, results are avaialble for read."},
+                    { value: "1", name: "PENDING", desc: "Pending operation. Chaning configuration while pending results in an error."},
+                    { value: "2", name: "ERROR_WRITE", desc: "A configuration change was attempted during pending operation."},
+                    { value: "3", name: "ERROR_OPCODE", desc: "The accelerator was supplied with an unknown opcode."}
+                ]}
+          ]
+        }
+    ],
+}
