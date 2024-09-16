@@ -3,7 +3,7 @@
     clock_primary: "clk_i",
     reset_primary: "rst_ni",
     bus_device: "reg",
-    bus_host: "",
+    bus_intefaces: "",
 
     regwidth: "32",
     registers: [
