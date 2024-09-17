@@ -20,6 +20,6 @@ sources:
     - rtl/spiker_adapter.sv
   include_dirs:
     - ../register_interface/include 
-    - ../ibex/vendor/lowrisc_ip/ip/prim/rtl/prim_assert.sv
+    - ../ibex/vendor/lowrisc_ip/ip/prim/rtl
   vlog_opts:
     - -L register_interface_lib
