@@ -1,3 +1,6 @@
+`include "register_interface/typedef.svh"
+`include "register_interface/assign.svh"
+
 module spiker_adapter#(
     parameter int unsigned  AXI_ADDR_WIDTH = 32,
     localparam int unsigned AXI_DATA_WIDTH = 32,
