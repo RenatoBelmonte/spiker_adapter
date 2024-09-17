@@ -19,7 +19,7 @@ sources:
     - rtl/spiker_reader.vhd
     - rtl/spiker_adapter.sv
   include_dirs:
-    - ../register_interface/include 
-    - ../ibex/vendor/lowrisc_ip/ip/prim/rtl
+    - ../register_interface*/include 
+    - ../ibex*/vendor/lowrisc_ip/ip/prim/rtl
   vlog_opts:
     - -L register_interface_lib
