@@ -10,7 +10,7 @@ sources:
   #spiker_adapter
   defines:
   files:
-    - tlul_pkg.sv
+    - rtl/tlul_pkg.sv
     - gen_sv/spiker_adapter_reg_pkg.sv
     - gen_sv/spiker_adapter_reg_top.sv
     - rtl/spiker_reader.vhd
