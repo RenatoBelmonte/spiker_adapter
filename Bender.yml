@@ -10,12 +10,11 @@ sources:
   #spiker_adapter
   defines:
   files:
+    - rtl/tlul_pkg.sv
     - gen_sv/spiker_adapter_reg_pkg.sv
     - gen_sv/spiker_adapter_reg_top.sv
     - rtl/spiker_reader.vhd
-    - rtl/spiker_adapter_pkg.sv
     - rtl/spiker_adapter.sv
-    - rtl/spiker_adapter_top.sv
   include_dirs:
     - ../register_interface/include 
   vlog_opts:
