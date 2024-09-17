@@ -25,7 +25,7 @@ package prim_mubi_pkg;
   } mubi4_t;
 
   // This is a prerequisite for the multibit functions below to work.
-  //`ASSERT_STATIC_IN_PACKAGE(CheckMuBi4ValsComplementary_A, MuBi4True == ~MuBi4False)
+  `ASSERT_STATIC_IN_PACKAGE(CheckMuBi4ValsComplementary_A, MuBi4True == ~MuBi4False)
 
   // Test whether the multibit value is one of the valid enumerations
   function automatic logic mubi4_test_invalid(mubi4_t val);
