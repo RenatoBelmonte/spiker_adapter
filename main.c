@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdio.h>
 #include "pulp.h"
 
 #define BUFFER_SIZE 98
