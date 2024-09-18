@@ -11,7 +11,6 @@ void read_from_memory(uint8_t *buffer)
     // Read from memory
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
     {
-        printf("I'mwriting\n");
         spiker_adapter_reg[i] = buffer[i];
     }
 }
