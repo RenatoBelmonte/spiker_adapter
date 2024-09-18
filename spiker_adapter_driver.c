@@ -6,9 +6,9 @@
 
 void read_from_memory(uint8_t *buffer)
 {
+    printf("I'm in the function\n");
     uint8_t volatile *spiker_adapter_reg = (uint8_t *)SPIKER_ADAPTER_SPIKES_BASE_ADDR;
     // Read from memory
-    printf("I'm in the function\n");
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
     {
         printf("I'mwriting\n");
