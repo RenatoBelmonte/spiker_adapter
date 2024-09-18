@@ -20,5 +20,7 @@ int main()
 
     read_from_memory(buffer);
     start_spiker_adapter(); 
+    
+    printf("JOB DONE\n");
 
 }
