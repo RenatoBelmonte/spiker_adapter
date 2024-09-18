@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "pulp.h"
+//#include "spiker_adapter_driver.h"
+//#include "spiker_adapter.h"
 
 #define BUFFER_SIZE 98
 int __rt_fpga_fc_frequency = 20000000;
