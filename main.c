@@ -25,6 +25,6 @@ int main()
     fclose(file);
 
     read_from_memory(buffer);
-    
+    start_spiker_adapter(); 
 
 }

@@ -60,9 +60,9 @@ reg_rsp_t from_reg_file_rsp;
                  .reg_req_i(to_reg_file_req),
                  .reg_rsp_o(from_reg_file_rsp),
 
-                 //Signals to wide_alu IP
-                 .reg2hw(reg_file_to_ip),
-                 .hw2reg(ip_to_reg_file)
+                 //Signals to spiker IP
+                 .reg2hw(reg_file_to_ip),       // Write
+                 .hw2reg(ip_to_reg_file)        // Read
     );
 
 
