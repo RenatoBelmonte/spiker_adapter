@@ -12,11 +12,8 @@ int main()
     printf("Hello World!\n");
 
     uint8_t buffer[BUFFER_SIZE];
-    
-    // Fill the buffer with incremental values
-    for (int i = 25; i < BUFFER_SIZE; i++) {
-        buffer[i] = i;
-    }
+    memset(buffer, 10, sizeof (buffer));
+     
     printf("I'm in the function\n");
     uint8_t volatile *spiker_adapter_reg = (uint8_t *)0x1A402000;
     // Read from memory
