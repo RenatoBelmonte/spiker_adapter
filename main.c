@@ -17,7 +17,14 @@ int main()
     for (int i = 25; i < BUFFER_SIZE; i++) {
         buffer[i] = i;
     }
-
+    printf("I'm in the function\n");
+    uint8_t volatile *spiker_adapter_reg = (uint8_t *)0x1A402000;
+    // Read from memory
+    for (size_t i = 0; i < 25; i++)
+    {
+        printf("I'mwriting\n");
+        spiker_adapter_reg[i] = buffer[i];
+    }
     read_from_memory(buffer);
     start_spiker_adapter(); 
     
