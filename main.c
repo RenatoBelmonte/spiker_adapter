@@ -1,8 +1,10 @@
 #include <stdio.h>
-#include <stdint.h>
+//#include <stdint.h>
 #include "pulp.h"
 
 #define BUFFER_SIZE 98
+int __rt_fpga_fc_frequency = 20000000;
+int __rt_fpga_periph_frequency = 10000000;
 
 int main()
 {
