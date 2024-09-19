@@ -22,8 +22,8 @@ int main()
         printf("I'mwriting\n");
         spiker_adapter_reg[i] = buffer[i] + i;
     }
-    read_from_memory(buffer);
-    start_spiker_adapter(); 
+    //read_from_memory(buffer);
+    //start_spiker_adapter(); 
     
     printf("JOB DONE\n");
 
