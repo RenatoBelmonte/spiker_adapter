@@ -15,7 +15,7 @@ int main()
     memset(buffer, 0, sizeof (buffer));
      
     printf("I'm in the function\n");
-    uint8_t volatile *spiker_adapter_reg = (uint8_t *)0x1A402000;
+    uint8_t volatile *spiker_adapter_reg = (uint8_t *)0x1A400000;
     // Read from memory
     for (size_t i = 0; i < 25; i++)
     {
