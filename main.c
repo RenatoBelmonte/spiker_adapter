@@ -23,6 +23,8 @@ int main()
         spiker_adapter_reg[i] = buffer[i] + i;
     }
     printf("Checking: %hhi\n", spiker_adapter_reg[0]);
+    printf("Checking: %hhi\n", spiker_adapter_reg[1]);
+    printf("Checking: %hhi\n", spiker_adapter_reg[2]);
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
     
