@@ -1,4 +1,4 @@
-#include <wide_alu.h>
+#include "spiker_adapter.h"
 #include <stdint.h>
 #include <hal/pulp.h>
 

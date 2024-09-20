@@ -1,7 +1,7 @@
-#include <wide_alu_driver.h>
+#include "spiker_adapter_driver.h"
 #include <stdint.h>
 #include <stdio.h>
-#include "wide_alu.h"
+#include "spiker_adapter.h"
 
 #define WIDE_ALU0_BASE_ADDR 0x1A400000
 
