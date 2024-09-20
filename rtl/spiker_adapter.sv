@@ -89,6 +89,8 @@ logic [31:0] op_b_signal;
 assign op_a_signal = reg_file_to_ip.spikes[0].q;
 assign op_b_signal = reg_file_to_ip.spikes[1].q;
 
+
+// TO READ
 assign ip_to_reg_file.spikes_result[0].d = op_a_signal;
 assign ip_to_reg_file.spikes_result[1].d = op_b_signal;
 
