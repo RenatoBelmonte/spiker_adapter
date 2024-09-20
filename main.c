@@ -20,7 +20,7 @@ int main()
     for (size_t i = 0; i < 25; i++)
     {
         uint8_t val = buffer[i] + i;
-        printf("I'm writing buffer = %hhx \t", buffer[i] + i);
+        printf("I'm writing buffer = %hhx = %c \t", buffer[i] + i, val);
         spiker_adapter_reg[i] = val;
         printf("Check: val = %hhx; reg = %hhx\n", val, spiker_adapter_reg[i]);
     }
