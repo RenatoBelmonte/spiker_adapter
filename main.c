@@ -11,12 +11,12 @@ int main()
 {
     printf("Hello World!\n");
 
-    uint8_t buffer[BUFFER_SIZE];
+    uint32_t buffer[BUFFER_SIZE];
     memset(buffer, 0, sizeof (buffer));
     printf("The address of buffer is %i", &buffer);
      
     printf("I'm in the function\n");
-    uint8_t volatile *spiker_adapter_reg = (uint8_t *)0x1A400000;
+    uint32_t volatile *spiker_adapter_reg = (uint32_t *)0x1A400000;
     // Read from memory
     for (size_t i = 0; i < 5; i++)
     {
