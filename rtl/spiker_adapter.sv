@@ -81,24 +81,61 @@ reg_rsp_t from_reg_file_rsp;
 // spiker_adapter_reg2hw_spikes_mreg_t --> logic[31:0] q;
 //////////////////////////////////////////////////////////////////////////
 
-// New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
-logic [31:0] op_a_signal;
-logic [31:0] op_b_signal;
+//  // New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
+//  logic [31:0] op_a_signal;
+//  logic [31:0] op_b_signal;
+//  
+//  // Assign the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b to the new signals
+//  assign op_a_signal = reg_file_to_ip.spikes[0].q;
+//  assign op_b_signal = reg_file_to_ip.spikes[1].q;
+//  
+//  // New signals to connect the outputs of spiker_reader
+//  logic [31:0] spiker_data_out1;
+//  logic [31:0] spiker_data_out2;
+//  
+//  // Instantiate the VHDL module
+//  spiker_reader u_spiker_reader (
+//      .data_in1(op_a_signal),
+//      .data_in2(op_b_signal),
+//      .data_out1(spiker_data_out1),
+//      .data_out2(spiker_data_out2)
+//  );
 
-// Assign the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b to the new signals
-assign op_a_signal = reg_file_to_ip.spikes[0].q;
-assign op_b_signal = reg_file_to_ip.spikes[1].q;
+ // New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
+    logic [31:0] op_a_signal;
+    logic [31:0] op_b_signal;
 
-// New signals to connect the outputs of spiker_reader
-logic [31:0] spiker_data_out1;
-logic [31:0] spiker_data_out2;
+    // Assign the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b to the new signals
+    assign op_a_signal = reg_file_to_ip.op_a;
+    assign op_b_signal = reg_file_to_ip.op_b;
 
-// Instantiate the VHDL module
-spiker_reader u_spiker_reader (
-    .data_in1(op_a_signal),
-    .data_in2(op_b_signal),
-    .data_out1(spiker_data_out1),
-    .data_out2(spiker_data_out2)
-);
+    // New signals to connect the outputs of spiker_reader
+    logic [31:0] spiker_data_out1;
+    logic [31:0] spiker_data_out2;
+
+    // Instantiate the VHDL module
+    spiker_reader u_spiker_reader (
+        .data_in1(op_a_signal),
+        .data_in2(op_b_signal),
+        .data_out1(spiker_data_out1),
+        .data_out2(spiker_data_out2)
+    );
+
+    wide_alu i_wide_alu (
+                         .clk_i,
+                         .rst_ni,
+                         .trigger_i(reg_file_to_ip.ctrl1.trigger.q & reg_file_to_ip.ctrl1.trigger.qe),
+                         .clear_err_i(reg_file_to_ip.ctrl1.clear_err.q & reg_file_to_ip.ctrl1.clear_err.qe),
+                         .op_a_i(spiker_data_out1),
+                         .op_b_i(spiker_data_out2),
+                         .deaccel_factor_we_i(reg_file_to_ip.ctrl2.delay.qe),
+                         .deaccel_factor_i(reg_file_to_ip.ctrl2.delay.q),
+                         .deaccel_factor_o(ip_to_reg_file.ctrl2.delay.d),
+                         .op_sel_we_i(reg_file_to_ip.ctrl2.opsel.qe),
+                         .op_sel_i(wide_alu_pkg::optype_e'(reg_file_to_ip.ctrl2.opsel.q)),
+                         .op_sel_o(ip_to_reg_file.ctrl2.opsel.d),
+                         .result_o(ip_to_reg_file.result),
+                         .status_o(ip_to_reg_file.status.d)
+                         );
 
 endmodule : spiker_adapter
