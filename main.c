@@ -19,9 +19,9 @@ int main()
     // Read from memory
     for (size_t i = 0; i < 25; i++)
     {
-        printf("I'm writing: \t");
+        printf("I'm writing \t");
         spiker_adapter_reg[i] = buffer[i] + i;
-        printf("Check: buffer = %hhi; reg = %hhi", buffer[i], spiker_adapter_reg[i]);
+        printf("Check: buffer = %hhi; reg = %hhi\n", buffer[i], spiker_adapter_reg[i]);
     }
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
