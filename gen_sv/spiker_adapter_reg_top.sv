@@ -68,54 +68,79 @@ module spiker_adapter_reg_top #(
   // Define SW related signals
   // Format: <reg>_<field>_{wd|we|qs}
   //        or <reg>_{wd|we|qs} if field == 1 or 0
+  logic [31:0] spikes_0_qs;
   logic [31:0] spikes_0_wd;
   logic spikes_0_we;
+  logic [31:0] spikes_1_qs;
   logic [31:0] spikes_1_wd;
   logic spikes_1_we;
+  logic [31:0] spikes_2_qs;
   logic [31:0] spikes_2_wd;
   logic spikes_2_we;
+  logic [31:0] spikes_3_qs;
   logic [31:0] spikes_3_wd;
   logic spikes_3_we;
+  logic [31:0] spikes_4_qs;
   logic [31:0] spikes_4_wd;
   logic spikes_4_we;
+  logic [31:0] spikes_5_qs;
   logic [31:0] spikes_5_wd;
   logic spikes_5_we;
+  logic [31:0] spikes_6_qs;
   logic [31:0] spikes_6_wd;
   logic spikes_6_we;
+  logic [31:0] spikes_7_qs;
   logic [31:0] spikes_7_wd;
   logic spikes_7_we;
+  logic [31:0] spikes_8_qs;
   logic [31:0] spikes_8_wd;
   logic spikes_8_we;
+  logic [31:0] spikes_9_qs;
   logic [31:0] spikes_9_wd;
   logic spikes_9_we;
+  logic [31:0] spikes_10_qs;
   logic [31:0] spikes_10_wd;
   logic spikes_10_we;
+  logic [31:0] spikes_11_qs;
   logic [31:0] spikes_11_wd;
   logic spikes_11_we;
+  logic [31:0] spikes_12_qs;
   logic [31:0] spikes_12_wd;
   logic spikes_12_we;
+  logic [31:0] spikes_13_qs;
   logic [31:0] spikes_13_wd;
   logic spikes_13_we;
+  logic [31:0] spikes_14_qs;
   logic [31:0] spikes_14_wd;
   logic spikes_14_we;
+  logic [31:0] spikes_15_qs;
   logic [31:0] spikes_15_wd;
   logic spikes_15_we;
+  logic [31:0] spikes_16_qs;
   logic [31:0] spikes_16_wd;
   logic spikes_16_we;
+  logic [31:0] spikes_17_qs;
   logic [31:0] spikes_17_wd;
   logic spikes_17_we;
+  logic [31:0] spikes_18_qs;
   logic [31:0] spikes_18_wd;
   logic spikes_18_we;
+  logic [31:0] spikes_19_qs;
   logic [31:0] spikes_19_wd;
   logic spikes_19_we;
+  logic [31:0] spikes_20_qs;
   logic [31:0] spikes_20_wd;
   logic spikes_20_we;
+  logic [31:0] spikes_21_qs;
   logic [31:0] spikes_21_wd;
   logic spikes_21_we;
+  logic [31:0] spikes_22_qs;
   logic [31:0] spikes_22_wd;
   logic spikes_22_we;
+  logic [31:0] spikes_23_qs;
   logic [31:0] spikes_23_wd;
   logic spikes_23_we;
+  logic [31:0] spikes_24_qs;
   logic [31:0] spikes_24_wd;
   logic spikes_24_we;
   logic ctrl1_sample_ready_wd;
@@ -132,7 +157,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_0 (
     .clk_i   (clk_i    ),
@@ -150,7 +175,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[0].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_0_qs)
   );
 
   // Subregister 1 of Multireg spikes
@@ -158,7 +184,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_1 (
     .clk_i   (clk_i    ),
@@ -176,7 +202,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[1].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_1_qs)
   );
 
   // Subregister 2 of Multireg spikes
@@ -184,7 +211,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_2 (
     .clk_i   (clk_i    ),
@@ -202,7 +229,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[2].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_2_qs)
   );
 
   // Subregister 3 of Multireg spikes
@@ -210,7 +238,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_3 (
     .clk_i   (clk_i    ),
@@ -228,7 +256,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[3].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_3_qs)
   );
 
   // Subregister 4 of Multireg spikes
@@ -236,7 +265,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_4 (
     .clk_i   (clk_i    ),
@@ -254,7 +283,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[4].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_4_qs)
   );
 
   // Subregister 5 of Multireg spikes
@@ -262,7 +292,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_5 (
     .clk_i   (clk_i    ),
@@ -280,7 +310,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[5].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_5_qs)
   );
 
   // Subregister 6 of Multireg spikes
@@ -288,7 +319,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_6 (
     .clk_i   (clk_i    ),
@@ -306,7 +337,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[6].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_6_qs)
   );
 
   // Subregister 7 of Multireg spikes
@@ -314,7 +346,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_7 (
     .clk_i   (clk_i    ),
@@ -332,7 +364,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[7].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_7_qs)
   );
 
   // Subregister 8 of Multireg spikes
@@ -340,7 +373,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_8 (
     .clk_i   (clk_i    ),
@@ -358,7 +391,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[8].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_8_qs)
   );
 
   // Subregister 9 of Multireg spikes
@@ -366,7 +400,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_9 (
     .clk_i   (clk_i    ),
@@ -384,7 +418,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[9].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_9_qs)
   );
 
   // Subregister 10 of Multireg spikes
@@ -392,7 +427,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_10 (
     .clk_i   (clk_i    ),
@@ -410,7 +445,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[10].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_10_qs)
   );
 
   // Subregister 11 of Multireg spikes
@@ -418,7 +454,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_11 (
     .clk_i   (clk_i    ),
@@ -436,7 +472,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[11].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_11_qs)
   );
 
   // Subregister 12 of Multireg spikes
@@ -444,7 +481,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_12 (
     .clk_i   (clk_i    ),
@@ -462,7 +499,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[12].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_12_qs)
   );
 
   // Subregister 13 of Multireg spikes
@@ -470,7 +508,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_13 (
     .clk_i   (clk_i    ),
@@ -488,7 +526,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[13].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_13_qs)
   );
 
   // Subregister 14 of Multireg spikes
@@ -496,7 +535,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_14 (
     .clk_i   (clk_i    ),
@@ -514,7 +553,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[14].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_14_qs)
   );
 
   // Subregister 15 of Multireg spikes
@@ -522,7 +562,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_15 (
     .clk_i   (clk_i    ),
@@ -540,7 +580,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[15].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_15_qs)
   );
 
   // Subregister 16 of Multireg spikes
@@ -548,7 +589,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_16 (
     .clk_i   (clk_i    ),
@@ -566,7 +607,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[16].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_16_qs)
   );
 
   // Subregister 17 of Multireg spikes
@@ -574,7 +616,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_17 (
     .clk_i   (clk_i    ),
@@ -592,7 +634,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[17].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_17_qs)
   );
 
   // Subregister 18 of Multireg spikes
@@ -600,7 +643,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_18 (
     .clk_i   (clk_i    ),
@@ -618,7 +661,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[18].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_18_qs)
   );
 
   // Subregister 19 of Multireg spikes
@@ -626,7 +670,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_19 (
     .clk_i   (clk_i    ),
@@ -644,7 +688,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[19].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_19_qs)
   );
 
   // Subregister 20 of Multireg spikes
@@ -652,7 +697,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_20 (
     .clk_i   (clk_i    ),
@@ -670,7 +715,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[20].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_20_qs)
   );
 
   // Subregister 21 of Multireg spikes
@@ -678,7 +724,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_21 (
     .clk_i   (clk_i    ),
@@ -696,7 +742,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[21].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_21_qs)
   );
 
   // Subregister 22 of Multireg spikes
@@ -704,7 +751,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_22 (
     .clk_i   (clk_i    ),
@@ -722,7 +769,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[22].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_22_qs)
   );
 
   // Subregister 23 of Multireg spikes
@@ -730,7 +778,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_23 (
     .clk_i   (clk_i    ),
@@ -748,7 +796,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[23].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_23_qs)
   );
 
   // Subregister 24 of Multireg spikes
@@ -756,7 +805,7 @@ module spiker_adapter_reg_top #(
 
   prim_subreg #(
     .DW      (32),
-    .SWACCESS("WO"),
+    .SWACCESS("RW"),
     .RESVAL  (32'h0)
   ) u_spikes_24 (
     .clk_i   (clk_i    ),
@@ -774,7 +823,8 @@ module spiker_adapter_reg_top #(
     .qe     (),
     .q      (reg2hw.spikes[24].q ),
 
-    .qs     ()
+    // to register interface (read)
+    .qs     (spikes_24_qs)
   );
 
 
@@ -982,103 +1032,103 @@ module spiker_adapter_reg_top #(
     reg_rdata_next = '0;
     unique case (1'b1)
       addr_hit[0]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_0_qs;
       end
 
       addr_hit[1]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_1_qs;
       end
 
       addr_hit[2]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_2_qs;
       end
 
       addr_hit[3]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_3_qs;
       end
 
       addr_hit[4]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_4_qs;
       end
 
       addr_hit[5]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_5_qs;
       end
 
       addr_hit[6]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_6_qs;
       end
 
       addr_hit[7]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_7_qs;
       end
 
       addr_hit[8]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_8_qs;
       end
 
       addr_hit[9]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_9_qs;
       end
 
       addr_hit[10]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_10_qs;
       end
 
       addr_hit[11]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_11_qs;
       end
 
       addr_hit[12]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_12_qs;
       end
 
       addr_hit[13]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_13_qs;
       end
 
       addr_hit[14]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_14_qs;
       end
 
       addr_hit[15]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_15_qs;
       end
 
       addr_hit[16]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_16_qs;
       end
 
       addr_hit[17]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_17_qs;
       end
 
       addr_hit[18]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_18_qs;
       end
 
       addr_hit[19]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_19_qs;
       end
 
       addr_hit[20]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_20_qs;
       end
 
       addr_hit[21]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_21_qs;
       end
 
       addr_hit[22]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_22_qs;
       end
 
       addr_hit[23]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_23_qs;
       end
 
       addr_hit[24]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = spikes_24_qs;
       end
 
       addr_hit[25]: begin

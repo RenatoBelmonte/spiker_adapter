@@ -11,7 +11,7 @@
             desc: "Subword of Spikes",
             count: "25",
             cname: "SPIKES",
-            swaccess: "wo",
+            swaccess: "rw",
             fields: [
                 { bits: "31:0"
                 }
