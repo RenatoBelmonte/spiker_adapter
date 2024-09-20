@@ -21,13 +21,8 @@ int main()
     {
         printf("I'm writing\n");
         spiker_adapter_reg[i] = buffer[i] + i;
+        printf("Check: buffer = %hhi; reg = %hhi", buffer[i], spiker_adapter_reg[i]);
     }
-    printf("Checking: %hhi\n", spiker_adapter_reg[0]);
-    printf("Checking: %i\n", spiker_adapter_reg[0]);
-    printf("Checking: %hhi\n", spiker_adapter_reg[1]);
-    printf("Checking: %i\n", spiker_adapter_reg[1]);
-    printf("Checking: %hhi\n", spiker_adapter_reg[2]);
-    printf("Checking: %i\n", spiker_adapter_reg[2]);
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
     
