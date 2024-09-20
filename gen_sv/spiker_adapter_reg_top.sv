@@ -7,7 +7,7 @@
 
 `include "common_cells/assertions.svh"
 
-module wide_alu_reg_top #(
+module spiker_adapter_reg_top #(
   parameter type reg_req_t = logic,
   parameter type reg_rsp_t = logic,
   parameter int AW = 8
