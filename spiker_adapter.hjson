@@ -18,6 +18,20 @@
             ],
           }
         },
+        { multireg:
+          { name: "SPIKES_RESULT",
+            desc: "Subword of results.",
+            count: "25",
+            cname: "SPIKES_RESULT",
+            swaccess: "ro",
+            hwaccess: "hwo",
+            hwext: "true",
+            fields: [
+                { bits: "31:0"
+                }
+            ],
+          }
+        },
         { name: "CTRL1",
           desc: "Controls handshaking signal of the accelerator.",
           swaccess: "wo",

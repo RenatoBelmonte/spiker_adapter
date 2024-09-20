@@ -10,7 +10,7 @@
 module spiker_adapter_reg_top #(
   parameter type reg_req_t = logic,
   parameter type reg_rsp_t = logic,
-  parameter int AW = 7
+  parameter int AW = 8
 ) (
   input logic clk_i,
   input logic rst_ni,
@@ -143,6 +143,56 @@ module spiker_adapter_reg_top #(
   logic [31:0] spikes_24_qs;
   logic [31:0] spikes_24_wd;
   logic spikes_24_we;
+  logic [31:0] spikes_result_0_qs;
+  logic spikes_result_0_re;
+  logic [31:0] spikes_result_1_qs;
+  logic spikes_result_1_re;
+  logic [31:0] spikes_result_2_qs;
+  logic spikes_result_2_re;
+  logic [31:0] spikes_result_3_qs;
+  logic spikes_result_3_re;
+  logic [31:0] spikes_result_4_qs;
+  logic spikes_result_4_re;
+  logic [31:0] spikes_result_5_qs;
+  logic spikes_result_5_re;
+  logic [31:0] spikes_result_6_qs;
+  logic spikes_result_6_re;
+  logic [31:0] spikes_result_7_qs;
+  logic spikes_result_7_re;
+  logic [31:0] spikes_result_8_qs;
+  logic spikes_result_8_re;
+  logic [31:0] spikes_result_9_qs;
+  logic spikes_result_9_re;
+  logic [31:0] spikes_result_10_qs;
+  logic spikes_result_10_re;
+  logic [31:0] spikes_result_11_qs;
+  logic spikes_result_11_re;
+  logic [31:0] spikes_result_12_qs;
+  logic spikes_result_12_re;
+  logic [31:0] spikes_result_13_qs;
+  logic spikes_result_13_re;
+  logic [31:0] spikes_result_14_qs;
+  logic spikes_result_14_re;
+  logic [31:0] spikes_result_15_qs;
+  logic spikes_result_15_re;
+  logic [31:0] spikes_result_16_qs;
+  logic spikes_result_16_re;
+  logic [31:0] spikes_result_17_qs;
+  logic spikes_result_17_re;
+  logic [31:0] spikes_result_18_qs;
+  logic spikes_result_18_re;
+  logic [31:0] spikes_result_19_qs;
+  logic spikes_result_19_re;
+  logic [31:0] spikes_result_20_qs;
+  logic spikes_result_20_re;
+  logic [31:0] spikes_result_21_qs;
+  logic spikes_result_21_re;
+  logic [31:0] spikes_result_22_qs;
+  logic spikes_result_22_re;
+  logic [31:0] spikes_result_23_qs;
+  logic spikes_result_23_re;
+  logic [31:0] spikes_result_24_qs;
+  logic spikes_result_24_re;
   logic ctrl1_sample_ready_wd;
   logic ctrl1_sample_ready_we;
   logic ctrl1_sample_wd;
@@ -828,6 +878,408 @@ module spiker_adapter_reg_top #(
   );
 
 
+
+  // Subregister 0 of Multireg spikes_result
+  // R[spikes_result_0]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_0 (
+    .re     (spikes_result_0_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[0].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_0_qs)
+  );
+
+  // Subregister 1 of Multireg spikes_result
+  // R[spikes_result_1]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_1 (
+    .re     (spikes_result_1_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[1].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_1_qs)
+  );
+
+  // Subregister 2 of Multireg spikes_result
+  // R[spikes_result_2]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_2 (
+    .re     (spikes_result_2_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[2].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_2_qs)
+  );
+
+  // Subregister 3 of Multireg spikes_result
+  // R[spikes_result_3]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_3 (
+    .re     (spikes_result_3_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[3].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_3_qs)
+  );
+
+  // Subregister 4 of Multireg spikes_result
+  // R[spikes_result_4]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_4 (
+    .re     (spikes_result_4_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[4].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_4_qs)
+  );
+
+  // Subregister 5 of Multireg spikes_result
+  // R[spikes_result_5]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_5 (
+    .re     (spikes_result_5_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[5].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_5_qs)
+  );
+
+  // Subregister 6 of Multireg spikes_result
+  // R[spikes_result_6]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_6 (
+    .re     (spikes_result_6_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[6].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_6_qs)
+  );
+
+  // Subregister 7 of Multireg spikes_result
+  // R[spikes_result_7]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_7 (
+    .re     (spikes_result_7_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[7].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_7_qs)
+  );
+
+  // Subregister 8 of Multireg spikes_result
+  // R[spikes_result_8]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_8 (
+    .re     (spikes_result_8_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[8].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_8_qs)
+  );
+
+  // Subregister 9 of Multireg spikes_result
+  // R[spikes_result_9]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_9 (
+    .re     (spikes_result_9_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[9].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_9_qs)
+  );
+
+  // Subregister 10 of Multireg spikes_result
+  // R[spikes_result_10]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_10 (
+    .re     (spikes_result_10_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[10].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_10_qs)
+  );
+
+  // Subregister 11 of Multireg spikes_result
+  // R[spikes_result_11]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_11 (
+    .re     (spikes_result_11_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[11].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_11_qs)
+  );
+
+  // Subregister 12 of Multireg spikes_result
+  // R[spikes_result_12]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_12 (
+    .re     (spikes_result_12_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[12].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_12_qs)
+  );
+
+  // Subregister 13 of Multireg spikes_result
+  // R[spikes_result_13]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_13 (
+    .re     (spikes_result_13_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[13].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_13_qs)
+  );
+
+  // Subregister 14 of Multireg spikes_result
+  // R[spikes_result_14]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_14 (
+    .re     (spikes_result_14_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[14].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_14_qs)
+  );
+
+  // Subregister 15 of Multireg spikes_result
+  // R[spikes_result_15]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_15 (
+    .re     (spikes_result_15_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[15].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_15_qs)
+  );
+
+  // Subregister 16 of Multireg spikes_result
+  // R[spikes_result_16]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_16 (
+    .re     (spikes_result_16_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[16].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_16_qs)
+  );
+
+  // Subregister 17 of Multireg spikes_result
+  // R[spikes_result_17]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_17 (
+    .re     (spikes_result_17_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[17].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_17_qs)
+  );
+
+  // Subregister 18 of Multireg spikes_result
+  // R[spikes_result_18]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_18 (
+    .re     (spikes_result_18_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[18].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_18_qs)
+  );
+
+  // Subregister 19 of Multireg spikes_result
+  // R[spikes_result_19]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_19 (
+    .re     (spikes_result_19_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[19].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_19_qs)
+  );
+
+  // Subregister 20 of Multireg spikes_result
+  // R[spikes_result_20]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_20 (
+    .re     (spikes_result_20_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[20].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_20_qs)
+  );
+
+  // Subregister 21 of Multireg spikes_result
+  // R[spikes_result_21]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_21 (
+    .re     (spikes_result_21_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[21].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_21_qs)
+  );
+
+  // Subregister 22 of Multireg spikes_result
+  // R[spikes_result_22]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_22 (
+    .re     (spikes_result_22_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[22].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_22_qs)
+  );
+
+  // Subregister 23 of Multireg spikes_result
+  // R[spikes_result_23]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_23 (
+    .re     (spikes_result_23_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[23].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_23_qs)
+  );
+
+  // Subregister 24 of Multireg spikes_result
+  // R[spikes_result_24]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_spikes_result_24 (
+    .re     (spikes_result_24_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.spikes_result[24].d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (spikes_result_24_qs)
+  );
+
+
   // R[ctrl1]: V(True)
 
   //   F[sample_ready]: 0:0
@@ -878,7 +1330,7 @@ module spiker_adapter_reg_top #(
 
 
 
-  logic [26:0] addr_hit;
+  logic [51:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[ 0] = (reg_addr == SPIKER_ADAPTER_SPIKES_0_OFFSET);
@@ -906,8 +1358,33 @@ module spiker_adapter_reg_top #(
     addr_hit[22] = (reg_addr == SPIKER_ADAPTER_SPIKES_22_OFFSET);
     addr_hit[23] = (reg_addr == SPIKER_ADAPTER_SPIKES_23_OFFSET);
     addr_hit[24] = (reg_addr == SPIKER_ADAPTER_SPIKES_24_OFFSET);
-    addr_hit[25] = (reg_addr == SPIKER_ADAPTER_CTRL1_OFFSET);
-    addr_hit[26] = (reg_addr == SPIKER_ADAPTER_STATUS_OFFSET);
+    addr_hit[25] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_0_OFFSET);
+    addr_hit[26] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_1_OFFSET);
+    addr_hit[27] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_2_OFFSET);
+    addr_hit[28] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_3_OFFSET);
+    addr_hit[29] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_4_OFFSET);
+    addr_hit[30] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_5_OFFSET);
+    addr_hit[31] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_6_OFFSET);
+    addr_hit[32] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_7_OFFSET);
+    addr_hit[33] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_8_OFFSET);
+    addr_hit[34] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_9_OFFSET);
+    addr_hit[35] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_10_OFFSET);
+    addr_hit[36] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_11_OFFSET);
+    addr_hit[37] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_12_OFFSET);
+    addr_hit[38] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_13_OFFSET);
+    addr_hit[39] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_14_OFFSET);
+    addr_hit[40] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_15_OFFSET);
+    addr_hit[41] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_16_OFFSET);
+    addr_hit[42] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_17_OFFSET);
+    addr_hit[43] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_18_OFFSET);
+    addr_hit[44] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_19_OFFSET);
+    addr_hit[45] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_20_OFFSET);
+    addr_hit[46] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_21_OFFSET);
+    addr_hit[47] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_22_OFFSET);
+    addr_hit[48] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_23_OFFSET);
+    addr_hit[49] = (reg_addr == SPIKER_ADAPTER_SPIKES_RESULT_24_OFFSET);
+    addr_hit[50] = (reg_addr == SPIKER_ADAPTER_CTRL1_OFFSET);
+    addr_hit[51] = (reg_addr == SPIKER_ADAPTER_STATUS_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -941,7 +1418,32 @@ module spiker_adapter_reg_top #(
                (addr_hit[23] & (|(SPIKER_ADAPTER_PERMIT[23] & ~reg_be))) |
                (addr_hit[24] & (|(SPIKER_ADAPTER_PERMIT[24] & ~reg_be))) |
                (addr_hit[25] & (|(SPIKER_ADAPTER_PERMIT[25] & ~reg_be))) |
-               (addr_hit[26] & (|(SPIKER_ADAPTER_PERMIT[26] & ~reg_be)))));
+               (addr_hit[26] & (|(SPIKER_ADAPTER_PERMIT[26] & ~reg_be))) |
+               (addr_hit[27] & (|(SPIKER_ADAPTER_PERMIT[27] & ~reg_be))) |
+               (addr_hit[28] & (|(SPIKER_ADAPTER_PERMIT[28] & ~reg_be))) |
+               (addr_hit[29] & (|(SPIKER_ADAPTER_PERMIT[29] & ~reg_be))) |
+               (addr_hit[30] & (|(SPIKER_ADAPTER_PERMIT[30] & ~reg_be))) |
+               (addr_hit[31] & (|(SPIKER_ADAPTER_PERMIT[31] & ~reg_be))) |
+               (addr_hit[32] & (|(SPIKER_ADAPTER_PERMIT[32] & ~reg_be))) |
+               (addr_hit[33] & (|(SPIKER_ADAPTER_PERMIT[33] & ~reg_be))) |
+               (addr_hit[34] & (|(SPIKER_ADAPTER_PERMIT[34] & ~reg_be))) |
+               (addr_hit[35] & (|(SPIKER_ADAPTER_PERMIT[35] & ~reg_be))) |
+               (addr_hit[36] & (|(SPIKER_ADAPTER_PERMIT[36] & ~reg_be))) |
+               (addr_hit[37] & (|(SPIKER_ADAPTER_PERMIT[37] & ~reg_be))) |
+               (addr_hit[38] & (|(SPIKER_ADAPTER_PERMIT[38] & ~reg_be))) |
+               (addr_hit[39] & (|(SPIKER_ADAPTER_PERMIT[39] & ~reg_be))) |
+               (addr_hit[40] & (|(SPIKER_ADAPTER_PERMIT[40] & ~reg_be))) |
+               (addr_hit[41] & (|(SPIKER_ADAPTER_PERMIT[41] & ~reg_be))) |
+               (addr_hit[42] & (|(SPIKER_ADAPTER_PERMIT[42] & ~reg_be))) |
+               (addr_hit[43] & (|(SPIKER_ADAPTER_PERMIT[43] & ~reg_be))) |
+               (addr_hit[44] & (|(SPIKER_ADAPTER_PERMIT[44] & ~reg_be))) |
+               (addr_hit[45] & (|(SPIKER_ADAPTER_PERMIT[45] & ~reg_be))) |
+               (addr_hit[46] & (|(SPIKER_ADAPTER_PERMIT[46] & ~reg_be))) |
+               (addr_hit[47] & (|(SPIKER_ADAPTER_PERMIT[47] & ~reg_be))) |
+               (addr_hit[48] & (|(SPIKER_ADAPTER_PERMIT[48] & ~reg_be))) |
+               (addr_hit[49] & (|(SPIKER_ADAPTER_PERMIT[49] & ~reg_be))) |
+               (addr_hit[50] & (|(SPIKER_ADAPTER_PERMIT[50] & ~reg_be))) |
+               (addr_hit[51] & (|(SPIKER_ADAPTER_PERMIT[51] & ~reg_be)))));
   end
 
   assign spikes_0_we = addr_hit[0] & reg_we & !reg_error;
@@ -1019,13 +1521,63 @@ module spiker_adapter_reg_top #(
   assign spikes_24_we = addr_hit[24] & reg_we & !reg_error;
   assign spikes_24_wd = reg_wdata[31:0];
 
-  assign ctrl1_sample_ready_we = addr_hit[25] & reg_we & !reg_error;
+  assign spikes_result_0_re = addr_hit[25] & reg_re & !reg_error;
+
+  assign spikes_result_1_re = addr_hit[26] & reg_re & !reg_error;
+
+  assign spikes_result_2_re = addr_hit[27] & reg_re & !reg_error;
+
+  assign spikes_result_3_re = addr_hit[28] & reg_re & !reg_error;
+
+  assign spikes_result_4_re = addr_hit[29] & reg_re & !reg_error;
+
+  assign spikes_result_5_re = addr_hit[30] & reg_re & !reg_error;
+
+  assign spikes_result_6_re = addr_hit[31] & reg_re & !reg_error;
+
+  assign spikes_result_7_re = addr_hit[32] & reg_re & !reg_error;
+
+  assign spikes_result_8_re = addr_hit[33] & reg_re & !reg_error;
+
+  assign spikes_result_9_re = addr_hit[34] & reg_re & !reg_error;
+
+  assign spikes_result_10_re = addr_hit[35] & reg_re & !reg_error;
+
+  assign spikes_result_11_re = addr_hit[36] & reg_re & !reg_error;
+
+  assign spikes_result_12_re = addr_hit[37] & reg_re & !reg_error;
+
+  assign spikes_result_13_re = addr_hit[38] & reg_re & !reg_error;
+
+  assign spikes_result_14_re = addr_hit[39] & reg_re & !reg_error;
+
+  assign spikes_result_15_re = addr_hit[40] & reg_re & !reg_error;
+
+  assign spikes_result_16_re = addr_hit[41] & reg_re & !reg_error;
+
+  assign spikes_result_17_re = addr_hit[42] & reg_re & !reg_error;
+
+  assign spikes_result_18_re = addr_hit[43] & reg_re & !reg_error;
+
+  assign spikes_result_19_re = addr_hit[44] & reg_re & !reg_error;
+
+  assign spikes_result_20_re = addr_hit[45] & reg_re & !reg_error;
+
+  assign spikes_result_21_re = addr_hit[46] & reg_re & !reg_error;
+
+  assign spikes_result_22_re = addr_hit[47] & reg_re & !reg_error;
+
+  assign spikes_result_23_re = addr_hit[48] & reg_re & !reg_error;
+
+  assign spikes_result_24_re = addr_hit[49] & reg_re & !reg_error;
+
+  assign ctrl1_sample_ready_we = addr_hit[50] & reg_we & !reg_error;
   assign ctrl1_sample_ready_wd = reg_wdata[0];
 
-  assign ctrl1_sample_we = addr_hit[25] & reg_we & !reg_error;
+  assign ctrl1_sample_we = addr_hit[50] & reg_we & !reg_error;
   assign ctrl1_sample_wd = reg_wdata[1];
 
-  assign status_re = addr_hit[26] & reg_re & !reg_error;
+  assign status_re = addr_hit[51] & reg_re & !reg_error;
 
   // Read data return
   always_comb begin
@@ -1132,11 +1684,111 @@ module spiker_adapter_reg_top #(
       end
 
       addr_hit[25]: begin
+        reg_rdata_next[31:0] = spikes_result_0_qs;
+      end
+
+      addr_hit[26]: begin
+        reg_rdata_next[31:0] = spikes_result_1_qs;
+      end
+
+      addr_hit[27]: begin
+        reg_rdata_next[31:0] = spikes_result_2_qs;
+      end
+
+      addr_hit[28]: begin
+        reg_rdata_next[31:0] = spikes_result_3_qs;
+      end
+
+      addr_hit[29]: begin
+        reg_rdata_next[31:0] = spikes_result_4_qs;
+      end
+
+      addr_hit[30]: begin
+        reg_rdata_next[31:0] = spikes_result_5_qs;
+      end
+
+      addr_hit[31]: begin
+        reg_rdata_next[31:0] = spikes_result_6_qs;
+      end
+
+      addr_hit[32]: begin
+        reg_rdata_next[31:0] = spikes_result_7_qs;
+      end
+
+      addr_hit[33]: begin
+        reg_rdata_next[31:0] = spikes_result_8_qs;
+      end
+
+      addr_hit[34]: begin
+        reg_rdata_next[31:0] = spikes_result_9_qs;
+      end
+
+      addr_hit[35]: begin
+        reg_rdata_next[31:0] = spikes_result_10_qs;
+      end
+
+      addr_hit[36]: begin
+        reg_rdata_next[31:0] = spikes_result_11_qs;
+      end
+
+      addr_hit[37]: begin
+        reg_rdata_next[31:0] = spikes_result_12_qs;
+      end
+
+      addr_hit[38]: begin
+        reg_rdata_next[31:0] = spikes_result_13_qs;
+      end
+
+      addr_hit[39]: begin
+        reg_rdata_next[31:0] = spikes_result_14_qs;
+      end
+
+      addr_hit[40]: begin
+        reg_rdata_next[31:0] = spikes_result_15_qs;
+      end
+
+      addr_hit[41]: begin
+        reg_rdata_next[31:0] = spikes_result_16_qs;
+      end
+
+      addr_hit[42]: begin
+        reg_rdata_next[31:0] = spikes_result_17_qs;
+      end
+
+      addr_hit[43]: begin
+        reg_rdata_next[31:0] = spikes_result_18_qs;
+      end
+
+      addr_hit[44]: begin
+        reg_rdata_next[31:0] = spikes_result_19_qs;
+      end
+
+      addr_hit[45]: begin
+        reg_rdata_next[31:0] = spikes_result_20_qs;
+      end
+
+      addr_hit[46]: begin
+        reg_rdata_next[31:0] = spikes_result_21_qs;
+      end
+
+      addr_hit[47]: begin
+        reg_rdata_next[31:0] = spikes_result_22_qs;
+      end
+
+      addr_hit[48]: begin
+        reg_rdata_next[31:0] = spikes_result_23_qs;
+      end
+
+      addr_hit[49]: begin
+        reg_rdata_next[31:0] = spikes_result_24_qs;
+      end
+
+      addr_hit[50]: begin
         reg_rdata_next[0] = '0;
         reg_rdata_next[1] = '0;
       end
 
-      addr_hit[26]: begin
+      addr_hit[51]: begin
         reg_rdata_next[1:0] = status_qs;
       end
 
@@ -1162,7 +1814,7 @@ endmodule
 
 module spiker_adapter_reg_top_intf
 #(
-  parameter int AW = 7,
+  parameter int AW = 8,
   localparam int DW = 32
 ) (
   input logic clk_i,

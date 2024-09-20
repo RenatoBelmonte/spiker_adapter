@@ -7,7 +7,7 @@
 package spiker_adapter_reg_pkg;
 
   // Address widths within the block
-  parameter int BlockAw = 7;
+  parameter int BlockAw = 8;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -29,6 +29,10 @@ package spiker_adapter_reg_pkg;
   } spiker_adapter_reg2hw_ctrl1_reg_t;
 
   typedef struct packed {
+    logic [31:0] d;
+  } spiker_adapter_hw2reg_spikes_result_mreg_t;
+
+  typedef struct packed {
     logic [1:0]  d;
   } spiker_adapter_hw2reg_status_reg_t;
 
@@ -40,39 +44,90 @@ package spiker_adapter_reg_pkg;
 
   // HW -> register type
   typedef struct packed {
+    spiker_adapter_hw2reg_spikes_result_mreg_t [24:0] spikes_result; // [801:2]
     spiker_adapter_hw2reg_status_reg_t status; // [1:0]
   } spiker_adapter_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_0_OFFSET = 7'h 0;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_1_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_2_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_3_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_4_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_5_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_6_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_7_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_8_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_9_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_10_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_11_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_12_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_13_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_14_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_15_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_16_OFFSET = 7'h 40;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_17_OFFSET = 7'h 44;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_18_OFFSET = 7'h 48;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_19_OFFSET = 7'h 4c;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_20_OFFSET = 7'h 50;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_21_OFFSET = 7'h 54;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_22_OFFSET = 7'h 58;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_23_OFFSET = 7'h 5c;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_24_OFFSET = 7'h 60;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_CTRL1_OFFSET = 7'h 64;
-  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_STATUS_OFFSET = 7'h 68;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_0_OFFSET = 8'h 0;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_1_OFFSET = 8'h 4;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_2_OFFSET = 8'h 8;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_3_OFFSET = 8'h c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_4_OFFSET = 8'h 10;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_5_OFFSET = 8'h 14;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_6_OFFSET = 8'h 18;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_7_OFFSET = 8'h 1c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_8_OFFSET = 8'h 20;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_9_OFFSET = 8'h 24;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_10_OFFSET = 8'h 28;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_11_OFFSET = 8'h 2c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_12_OFFSET = 8'h 30;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_13_OFFSET = 8'h 34;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_14_OFFSET = 8'h 38;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_15_OFFSET = 8'h 3c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_16_OFFSET = 8'h 40;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_17_OFFSET = 8'h 44;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_18_OFFSET = 8'h 48;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_19_OFFSET = 8'h 4c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_20_OFFSET = 8'h 50;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_21_OFFSET = 8'h 54;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_22_OFFSET = 8'h 58;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_23_OFFSET = 8'h 5c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_24_OFFSET = 8'h 60;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_0_OFFSET = 8'h 64;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_1_OFFSET = 8'h 68;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_2_OFFSET = 8'h 6c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_3_OFFSET = 8'h 70;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_4_OFFSET = 8'h 74;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_5_OFFSET = 8'h 78;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_6_OFFSET = 8'h 7c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_7_OFFSET = 8'h 80;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_8_OFFSET = 8'h 84;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_9_OFFSET = 8'h 88;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_10_OFFSET = 8'h 8c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_11_OFFSET = 8'h 90;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_12_OFFSET = 8'h 94;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_13_OFFSET = 8'h 98;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_14_OFFSET = 8'h 9c;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_15_OFFSET = 8'h a0;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_16_OFFSET = 8'h a4;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_17_OFFSET = 8'h a8;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_18_OFFSET = 8'h ac;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_19_OFFSET = 8'h b0;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_20_OFFSET = 8'h b4;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_21_OFFSET = 8'h b8;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_22_OFFSET = 8'h bc;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_23_OFFSET = 8'h c0;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_SPIKES_RESULT_24_OFFSET = 8'h c4;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_CTRL1_OFFSET = 8'h c8;
+  parameter logic [BlockAw-1:0] SPIKER_ADAPTER_STATUS_OFFSET = 8'h cc;
 
   // Reset values for hwext registers and their fields
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_0_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_1_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_2_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_3_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_4_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_5_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_6_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_7_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_8_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_9_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_10_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_11_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_12_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_13_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_14_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_15_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_16_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_17_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_18_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_19_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_20_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_21_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_22_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_23_RESVAL = 32'h 0;
+  parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_24_RESVAL = 32'h 0;
   parameter logic [1:0] SPIKER_ADAPTER_CTRL1_RESVAL = 2'h 0;
   parameter logic [1:0] SPIKER_ADAPTER_STATUS_RESVAL = 2'h 0;
 
@@ -103,12 +158,37 @@ package spiker_adapter_reg_pkg;
     SPIKER_ADAPTER_SPIKES_22,
     SPIKER_ADAPTER_SPIKES_23,
     SPIKER_ADAPTER_SPIKES_24,
+    SPIKER_ADAPTER_SPIKES_RESULT_0,
+    SPIKER_ADAPTER_SPIKES_RESULT_1,
+    SPIKER_ADAPTER_SPIKES_RESULT_2,
+    SPIKER_ADAPTER_SPIKES_RESULT_3,
+    SPIKER_ADAPTER_SPIKES_RESULT_4,
+    SPIKER_ADAPTER_SPIKES_RESULT_5,
+    SPIKER_ADAPTER_SPIKES_RESULT_6,
+    SPIKER_ADAPTER_SPIKES_RESULT_7,
+    SPIKER_ADAPTER_SPIKES_RESULT_8,
+    SPIKER_ADAPTER_SPIKES_RESULT_9,
+    SPIKER_ADAPTER_SPIKES_RESULT_10,
+    SPIKER_ADAPTER_SPIKES_RESULT_11,
+    SPIKER_ADAPTER_SPIKES_RESULT_12,
+    SPIKER_ADAPTER_SPIKES_RESULT_13,
+    SPIKER_ADAPTER_SPIKES_RESULT_14,
+    SPIKER_ADAPTER_SPIKES_RESULT_15,
+    SPIKER_ADAPTER_SPIKES_RESULT_16,
+    SPIKER_ADAPTER_SPIKES_RESULT_17,
+    SPIKER_ADAPTER_SPIKES_RESULT_18,
+    SPIKER_ADAPTER_SPIKES_RESULT_19,
+    SPIKER_ADAPTER_SPIKES_RESULT_20,
+    SPIKER_ADAPTER_SPIKES_RESULT_21,
+    SPIKER_ADAPTER_SPIKES_RESULT_22,
+    SPIKER_ADAPTER_SPIKES_RESULT_23,
+    SPIKER_ADAPTER_SPIKES_RESULT_24,
     SPIKER_ADAPTER_CTRL1,
     SPIKER_ADAPTER_STATUS
   } spiker_adapter_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] SPIKER_ADAPTER_PERMIT [27] = '{
+  parameter logic [3:0] SPIKER_ADAPTER_PERMIT [52] = '{
     4'b 1111, // index[ 0] SPIKER_ADAPTER_SPIKES_0
     4'b 1111, // index[ 1] SPIKER_ADAPTER_SPIKES_1
     4'b 1111, // index[ 2] SPIKER_ADAPTER_SPIKES_2
@@ -134,8 +214,33 @@ package spiker_adapter_reg_pkg;
     4'b 1111, // index[22] SPIKER_ADAPTER_SPIKES_22
     4'b 1111, // index[23] SPIKER_ADAPTER_SPIKES_23
     4'b 1111, // index[24] SPIKER_ADAPTER_SPIKES_24
-    4'b 0001, // index[25] SPIKER_ADAPTER_CTRL1
-    4'b 0001  // index[26] SPIKER_ADAPTER_STATUS
+    4'b 1111, // index[25] SPIKER_ADAPTER_SPIKES_RESULT_0
+    4'b 1111, // index[26] SPIKER_ADAPTER_SPIKES_RESULT_1
+    4'b 1111, // index[27] SPIKER_ADAPTER_SPIKES_RESULT_2
+    4'b 1111, // index[28] SPIKER_ADAPTER_SPIKES_RESULT_3
+    4'b 1111, // index[29] SPIKER_ADAPTER_SPIKES_RESULT_4
+    4'b 1111, // index[30] SPIKER_ADAPTER_SPIKES_RESULT_5
+    4'b 1111, // index[31] SPIKER_ADAPTER_SPIKES_RESULT_6
+    4'b 1111, // index[32] SPIKER_ADAPTER_SPIKES_RESULT_7
+    4'b 1111, // index[33] SPIKER_ADAPTER_SPIKES_RESULT_8
+    4'b 1111, // index[34] SPIKER_ADAPTER_SPIKES_RESULT_9
+    4'b 1111, // index[35] SPIKER_ADAPTER_SPIKES_RESULT_10
+    4'b 1111, // index[36] SPIKER_ADAPTER_SPIKES_RESULT_11
+    4'b 1111, // index[37] SPIKER_ADAPTER_SPIKES_RESULT_12
+    4'b 1111, // index[38] SPIKER_ADAPTER_SPIKES_RESULT_13
+    4'b 1111, // index[39] SPIKER_ADAPTER_SPIKES_RESULT_14
+    4'b 1111, // index[40] SPIKER_ADAPTER_SPIKES_RESULT_15
+    4'b 1111, // index[41] SPIKER_ADAPTER_SPIKES_RESULT_16
+    4'b 1111, // index[42] SPIKER_ADAPTER_SPIKES_RESULT_17
+    4'b 1111, // index[43] SPIKER_ADAPTER_SPIKES_RESULT_18
+    4'b 1111, // index[44] SPIKER_ADAPTER_SPIKES_RESULT_19
+    4'b 1111, // index[45] SPIKER_ADAPTER_SPIKES_RESULT_20
+    4'b 1111, // index[46] SPIKER_ADAPTER_SPIKES_RESULT_21
+    4'b 1111, // index[47] SPIKER_ADAPTER_SPIKES_RESULT_22
+    4'b 1111, // index[48] SPIKER_ADAPTER_SPIKES_RESULT_23
+    4'b 1111, // index[49] SPIKER_ADAPTER_SPIKES_RESULT_24
+    4'b 0001, // index[50] SPIKER_ADAPTER_CTRL1
+    4'b 0001  // index[51] SPIKER_ADAPTER_STATUS
   };
 
 endpackage
