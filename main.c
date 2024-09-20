@@ -19,10 +19,9 @@ int main()
     // Read from memory
     for (size_t i = 0; i < 25; i++)
     {
-        printf("\t Reg = %x, \t now", spiker_adapter_reg[i]);
-        uint8_t val = buffer[i] + i;
-        printf("I'm writing buffer = %x = %x \t", buffer[i] + i, val);
-        spiker_adapter_reg[i] = val;
+        printf("\t  Reg = %x \t now ", spiker_adapter_reg[i]);
+        printf("I'm writing buffer = %x\t", buffer[i] + i);
+        spiker_adapter_reg[i] = buffer[i] + i;
         printf("Check: reg = %x\n", spiker_adapter_reg[i]);
     }
     //read_from_memory(buffer);
