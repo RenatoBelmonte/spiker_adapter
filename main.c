@@ -20,9 +20,9 @@ int main()
     for (size_t i = 0; i < 25; i++)
     {
         uint8_t val = buffer[i] + i;
-        printf("I'm writing buffer = %hhi \t", buffer[i] + i);
+        printf("I'm writing buffer = %hhx \t", buffer[i] + i);
         spiker_adapter_reg[i] = val;
-        printf("Check: val = %hhi; reg = %hhi\n", val, spiker_adapter_reg[i]);
+        printf("Check: val = %hhx; reg = %hhx\n", val, spiker_adapter_reg[i]);
     }
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
