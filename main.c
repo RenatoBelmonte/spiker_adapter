@@ -13,6 +13,7 @@ int main()
 
     uint8_t buffer[BUFFER_SIZE];
     memset(buffer, 0, sizeof (buffer));
+    printf("The address of buffer is %i", &buffer);
      
     printf("I'm in the function\n");
     uint8_t volatile *spiker_adapter_reg = (uint8_t *)0x1A400000;
