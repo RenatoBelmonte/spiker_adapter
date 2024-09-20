@@ -66,14 +66,14 @@ package spiker_adapter_reg_pkg;
     wide_alu_reg2hw_op_b_mreg_t [7:0] op_b; // [272:17]
     wide_alu_reg2hw_ctrl1_reg_t ctrl1; // [16:13]
     wide_alu_reg2hw_ctrl2_reg_t ctrl2; // [12:0]
-  } wide_alu_reg2hw_t;
+  } spiker_adapter_reg2hw_t;
 
   // HW -> register type
   typedef struct packed {
     wide_alu_hw2reg_result_mreg_t [15:0] result; // [524:13]
     wide_alu_hw2reg_ctrl2_reg_t ctrl2; // [12:2]
     wide_alu_hw2reg_status_reg_t status; // [1:0]
-  } wide_alu_hw2reg_t;
+  } spiker_adapter_hw2reg_t;
 
   // Register offsets
   parameter logic [BlockAw-1:0] WIDE_ALU_OP_A_0_OFFSET = 8'h 0;
