@@ -10,18 +10,11 @@ module spiker_unwrap
     output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
 
-  import spiker_adapter_reg_pkg::* ;
+    import spiker_adapter_reg_pkg::* ;
 
-    // Define the DATA_WIDTH based on the number of spikes and their width
-    real width_real = N_SPIKES / WIDTH;
-    int data_width_int = int'(N_SPIKES / WIDTH);
+    // Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
+    localparam int DATA_WIDTH = ((N_SPIKES + WIDTH - 1) / WIDTH);
 
-    initial begin
-        if (width_real < int'(width_real)) begin
-            data_width_int = data_width_int + 1;
-        end
-        assign DATA_WIDTH = data_width_int;
-    end
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
     logic [DATA_WIDTH-1:0] data_in;
