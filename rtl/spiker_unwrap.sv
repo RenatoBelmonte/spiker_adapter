@@ -10,6 +10,8 @@ module spiker_unwrap
     output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
 
+  import spiker_adapter_reg_pkg::* ;
+
     // Define the DATA_WIDTH based on the number of spikes and their width
     localparam real width_real = N_SPIKES / WIDTH;
     localparam int DATA_WIDTH = int'(N_SPIKES / WIDTH);
