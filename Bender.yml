@@ -12,8 +12,9 @@ sources:
   files:
     - gen_sv/spiker_adapter_reg_pkg.sv
     - gen_sv/spiker_adapter_reg_top.sv
-    - rtl/spiker_unwrap.sv
-    - rtl/spiker_reader.vhd
+    - rtl/spiker_writer.sv
+    - rtl/spiker_reader.sv
+    - rtl/spiker_fake.vhd
     - rtl/spiker_adapter.sv
   include_dirs:
     - /home/renato/Desktop/training/pulpissimo/.bender/git/checkouts/ibex-3d636992cd289cea/vendor/lowrisc_ip/ip/prim/rtl
