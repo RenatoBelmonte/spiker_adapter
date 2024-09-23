@@ -13,8 +13,8 @@ module spiker_unwrap
   import spiker_adapter_reg_pkg::* ;
 
     // Define the DATA_WIDTH based on the number of spikes and their width
-    localparam real width_real = N_SPIKES / WIDTH;
-    localparam int DATA_WIDTH = int'(N_SPIKES / WIDTH);
+    real width_real = N_SPIKES / WIDTH;
+    int DATA_WIDTH = int'(N_SPIKES / WIDTH);
 
     initial begin
         if (width_real < int'(width_real)) begin
