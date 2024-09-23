@@ -102,15 +102,15 @@ assign ip_to_reg_file.spikes_result[0].d = op_a_signal;
 assign ip_to_reg_file.spikes_result[1].d = op_b_signal;
 
 
-//spiker_unwrap #(
-//    .WIDTH(AXI_ADDR_WIDTH),
-//    .N_SPIKES(784)
-//) u_spiker_unwrap (
-//    .clk_i(clk_i),
-//    .rst_ni(rst_ni),
-//    .test_mode_i(test_mode_i),
-//    .reg_file_to_ip(reg_file_to_ip),
-//    .ip_to_reg_file(ip_to_reg_file)
-//);  
+spiker_unwrap #(
+    .WIDTH(AXI_ADDR_WIDTH),
+    .N_SPIKES(784)
+) u_spiker_unwrap (
+    .clk_i(clk_i),
+    .rst_ni(rst_ni),
+    .test_mode_i(test_mode_i),
+    .reg_file_to_ip(reg_file_to_ip),
+    .ip_to_reg_file(ip_to_reg_file)
+);  
 
 endmodule : spiker_adapter
