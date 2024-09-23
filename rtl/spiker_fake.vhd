@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity spiker_reader is
+entity spiker_fake is
 	generic (
         N_SPIKES : integer := 784  -- Default width
     );
@@ -13,9 +13,9 @@ entity spiker_reader is
 		data_in : in STD_LOGIC_VECTOR(N_SPIKES-1 downto 0);
 		data_out : out STD_LOGIC_VECTOR(N_SPIKES-1 downto 0)
 	);
-end spiker_reader;
+end spiker_fake;
 
-architecture Behavioral of spiker_reader is
+architecture Behavioral of spiker_fake is
 begin
 	data_out <= data_in;
 end Behavioral;

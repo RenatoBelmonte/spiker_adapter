@@ -104,15 +104,47 @@ reg_rsp_t from_reg_file_rsp;
 // assign ip_to_reg_file.spikes_result[1].d = op_b_signal;
 
 
-spiker_unwrap #(
+// Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
+localparam N_SPIKES = 784;
+localparam int N_REG = ((N_SPIKES + WIDTH - 1) / WIDTH);
+localparam int DATA_WIDTH_SPIKE = N_REG * WIDTH;
+
+logic [DATA_WIDTH_SPIKE-1:0] data_in;
+logic [DATA_WIDTH_SPIKE-1:0] data_out;
+
+spiker_writer #(
     .WIDTH(AXI_ADDR_WIDTH),
-    .N_SPIKES(784)
-) u_spiker_unwrap (
+    .N_SPIKES(784),
+    .N_REG(N_REG),
+    .DATA_WIDTH(DATA_WIDTH_SPIKE)
+) u_spiker_writer (
     .clk_i(clk_i),
     .rst_ni(rst_ni),
     .test_mode_i(test_mode_i),
     .reg_file_to_ip(reg_file_to_ip),
-    .ip_to_reg_file(ip_to_reg_file)
-);  
+    .data_out(data_out)
+);
+
+spiker_reader #(
+    .WIDTH(AXI_ADDR_WIDTH),
+    .N_SPIKES(N_SPIKES),
+    .N_REG(N_REG),
+    .DATA_WIDTH(DATA_WIDTH_SPIKE)
+) u_spiker_reader (
+    .clk_i(clk_i),
+    .rst_ni(rst_ni),
+    .test_mode_i(test_mode_i),
+    .reg_file_to_ip(reg_file_to_ip),
+    .data_in(data_in)
+); 
+
+spiker_fake #(
+    .N_SPIKES(N_SPIKES)
+) u_spiker_fake (
+    .clk_i(clk_i),
+    .rst_ni(rst_ni),
+    .data_in(data_in),
+    .data_out(data_out)
+);
 
 endmodule : spiker_adapter
