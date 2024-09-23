@@ -14,12 +14,13 @@ module spiker_unwrap
 
     // Define the DATA_WIDTH based on the number of spikes and their width
     real width_real = N_SPIKES / WIDTH;
-    int DATA_WIDTH = int'(N_SPIKES / WIDTH);
+    int data_width_int = int'(N_SPIKES / WIDTH);
 
     initial begin
         if (width_real < int'(width_real)) begin
-            DATA_WIDTH = DATA_WIDTH + 1;
+            data_width_int = data_width_int + 1;
         end
+        assign DATA_WIDTH = data_width_int;
     end
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
