@@ -10,8 +10,8 @@ entity spiker_reader is
 	Port (
 		clk_i : in STD_LOGIC;
 		rst_ni : in STD_LOGIC;
-		data_in : in STD_LOGIC_VECTOR(DATA_WIDTH downto 0);
-		data_out : out STD_LOGIC_VECTOR(DATA_WIDTH downto 0);
+		data_in : in STD_LOGIC_VECTOR(N_SPIKES downto 0);
+		data_out : out STD_LOGIC_VECTOR(N_SPIKES downto 0);
 	);
 end spiker_reader;
 
