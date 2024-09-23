@@ -22,7 +22,7 @@ module spiker_unwrap
 
     generate
         genvar i;
-        for (i = 0; i < N_SPIKES; i = i + 1) begin
+        for (i = 0; i < DATA_WIDTH; i = i + 1) begin
             assign data_in[(i+1)*WIDTH-1 -: WIDTH] = reg_file_to_ip.spikes[i].q;
             assign data_out[(i+1)*WIDTH-1 -: WIDTH] = ip_to_reg_file.spikes_result[i].d; 
         end
