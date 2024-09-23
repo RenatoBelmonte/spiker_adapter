@@ -12,6 +12,7 @@ sources:
   files:
     - gen_sv/spiker_adapter_reg_pkg.sv
     - gen_sv/spiker_adapter_reg_top.sv
+    - rtl/spiker_unwrap.sv
     - rtl/spiker_reader.vhd
     - rtl/spiker_adapter.sv
   include_dirs:

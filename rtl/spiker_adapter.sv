@@ -79,31 +79,25 @@ reg_rsp_t from_reg_file_rsp;
 // spiker_adapter_reg2hw_ctrl1_reg_t            ctrl1;  // [3:0]
 //
 // spiker_adapter_reg2hw_spikes_mreg_t --> logic[31:0] q;
+// 
+// 
+//////////////////////////////////////////////////////////////////////////
+// SPIKER_ADAPTER_REG_2_HW --> reg_file_to_ip : 
+//   spiker_adapter_hw2reg_spikes_result_mreg_t [24:0] spikes_result; // [801:2]
+//   spiker_adapter_hw2reg_status_reg_t status; // [1:0] 
+// 
+//  spiker_adapter_hw2reg_spikes_result_mreg_t --> logic[31:0] d;
 //////////////////////////////////////////////////////////////////////////
 
-// New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
-logic [31:0] op_a_signal;
-logic [31:0] op_b_signal;
-
-// Assign the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b to the new signals
-assign op_a_signal = reg_file_to_ip.spikes[0].q;
-assign op_b_signal = reg_file_to_ip.spikes[1].q;
-
-
-// TO READ
-assign ip_to_reg_file.spikes_result[0].d = op_a_signal;
-assign ip_to_reg_file.spikes_result[1].d = op_b_signal;
-
-// New signals to connect the outputs of spiker_reader
-logic [31:0] spiker_data_out1;
-logic [31:0] spiker_data_out2;
-
-// Instantiate the VHDL module
-spiker_reader u_spiker_reader (
-    .data_in1(op_a_signal),
-    .data_in2(op_b_signal),
-    .data_out1(spiker_data_out1),
-    .data_out2(spiker_data_out2)
-);
+spiker_unwrap #(
+    .WIDTH(AXI_ADDR_WIDTH),
+    .N_SPIKES(784)
+) u_spiker_unwrap (
+    .clk_i(clk_i),
+    .rst_ni(rst_ni),
+    .test_mode_i(test_mode_i),
+    .reg_file_to_ip(reg_file_to_ip),
+    .ip_to_reg_file(ip_to_reg_file)
+);  
 
 endmodule : spiker_adapter

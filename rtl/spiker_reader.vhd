@@ -4,16 +4,18 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity spiker_reader is
+	generic (
+        N_SPIKES : integer := 784  -- Default width
+    );
 	Port (
-		data_in1 : in STD_LOGIC_VECTOR(31 downto 0);
-		data_in2 : in STD_LOGIC_VECTOR(31 downto 0);
-		data_out1 : out STD_LOGIC_VECTOR(31 downto 0);
-		data_out2 : out STD_LOGIC_VECTOR(31 downto 0)
+		clk_i : in STD_LOGIC;
+		rst_ni : in STD_LOGIC;
+		data_in : in STD_LOGIC_VECTOR(DATA_WIDTHt downto 0);
+		data_out : out STD_LOGIC_VECTOR(DATA_WIDTH downto 0);
 	);
 end spiker_reader;
 
 architecture Behavioral of spiker_reader is
 begin
-	data_out1 <= data_in1;
-	data_out2 <= data_in2;
+	data_out <= data_in;
 end Behavioral;
