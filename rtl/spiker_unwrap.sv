@@ -6,8 +6,8 @@ module spiker_unwrap
     input logic clk_i,
     input logic rst_ni,
     input logic test_mode_i,
-    input spiker_adapter_reg2hw_t reg_file_to_ip,  
-    output spiker_adapter_hw2reg_t ip_to_reg_file
+    input  spiker_adapter_reg_pkg::spiker_adapter_reg2hw_t reg_file_to_ip,  
+    output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
 
     // Define the DATA_WIDTH based on the number of spikes and their width
