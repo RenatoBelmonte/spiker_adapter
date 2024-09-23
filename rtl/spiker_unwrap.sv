@@ -13,7 +13,7 @@ module spiker_unwrap
     import spiker_adapter_reg_pkg::* ;
 
     // Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
-    localparam int DATA_WIDTH = ((N_SPIKES + WIDTH - 1) / WIDTH);
+    localparam int DATA_WIDTH = ((N_SPIKES + WIDTH - 1) / WIDTH) * WIDTH;
 
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
