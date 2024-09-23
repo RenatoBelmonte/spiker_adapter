@@ -88,6 +88,19 @@ reg_rsp_t from_reg_file_rsp;
 // 
 //  spiker_adapter_hw2reg_spikes_result_mreg_t --> logic[31:0] d;
 //////////////////////////////////////////////////////////////////////////
+// New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
+logic [31:0] op_a_signal;
+logic [31:0] op_b_signal;
+
+// Assign the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b to the new signals
+assign op_a_signal = reg_file_to_ip.spikes[0].q;
+assign op_b_signal = reg_file_to_ip.spikes[1].q;
+
+
+// TO READ
+assign ip_to_reg_file.spikes_result[0].d = op_a_signal;
+assign ip_to_reg_file.spikes_result[1].d = op_b_signal;
+
 
 spiker_unwrap #(
     .WIDTH(AXI_ADDR_WIDTH),
