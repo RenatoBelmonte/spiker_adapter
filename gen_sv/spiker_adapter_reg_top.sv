@@ -195,9 +195,9 @@ module spiker_adapter_reg_top #(
   logic spikes_result_24_re;
   logic ctrl1_sample_ready_wd;
   logic ctrl1_sample_ready_we;
-  logic ctrl1_sample_wd;
-  logic ctrl1_sample_we;
-  logic [1:0] status_qs;
+  logic ctrl1_ready_wd;
+  logic ctrl1_ready_we;
+  logic status_qs;
   logic status_re;
 
   // Register instances
@@ -1297,17 +1297,17 @@ module spiker_adapter_reg_top #(
   );
 
 
-  //   F[sample]: 1:1
+  //   F[ready]: 1:1
   prim_subreg_ext #(
     .DW    (1)
-  ) u_ctrl1_sample (
+  ) u_ctrl1_ready (
     .re     (1'b0),
-    .we     (ctrl1_sample_we),
-    .wd     (ctrl1_sample_wd),
+    .we     (ctrl1_ready_we),
+    .wd     (ctrl1_ready_wd),
     .d      ('0),
     .qre    (),
-    .qe     (reg2hw.ctrl1.sample.qe),
-    .q      (reg2hw.ctrl1.sample.q ),
+    .qe     (reg2hw.ctrl1.ready.qe),
+    .q      (reg2hw.ctrl1.ready.q ),
     .qs     ()
   );
 
@@ -1315,7 +1315,7 @@ module spiker_adapter_reg_top #(
   // R[status]: V(True)
 
   prim_subreg_ext #(
-    .DW    (2)
+    .DW    (1)
   ) u_status (
     .re     (status_re),
     .we     (1'b0),
@@ -1574,8 +1574,8 @@ module spiker_adapter_reg_top #(
   assign ctrl1_sample_ready_we = addr_hit[50] & reg_we & !reg_error;
   assign ctrl1_sample_ready_wd = reg_wdata[0];
 
-  assign ctrl1_sample_we = addr_hit[50] & reg_we & !reg_error;
-  assign ctrl1_sample_wd = reg_wdata[1];
+  assign ctrl1_ready_we = addr_hit[50] & reg_we & !reg_error;
+  assign ctrl1_ready_wd = reg_wdata[1];
 
   assign status_re = addr_hit[51] & reg_re & !reg_error;
 
@@ -1789,7 +1789,7 @@ module spiker_adapter_reg_top #(
       end
 
       addr_hit[51]: begin
-        reg_rdata_next[1:0] = status_qs;
+        reg_rdata_next[0] = status_qs;
       end
 
       default: begin

@@ -112,9 +112,17 @@ localparam int DATA_WIDTH_SPIKE = N_REG * WIDTH;
 logic [DATA_WIDTH_SPIKE-1:0] data_in;
 logic [DATA_WIDTH_SPIKE-1:0] data_out;
 
+logic ready;
+logic sample_ready;
+logic sample;
+
+assign ready = reg_file_to_ip.ctrl1.ready.q;
+assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;    
+assign ip_to_reg_file.status.d = sample;
+
 spiker_writer #(
     .WIDTH(AXI_ADDR_WIDTH),
-    .N_SPIKES(784),
+    .N_SPIKES(N_SPIKES),
     .N_REG(N_REG),
     .DATA_WIDTH(DATA_WIDTH_SPIKE)
 ) u_spiker_writer (
@@ -122,7 +130,8 @@ spiker_writer #(
     .rst_ni(rst_ni),
     .test_mode_i(test_mode_i),
     .reg_file_to_ip(reg_file_to_ip),
-    .data_out(data_out)
+    .data_out(data_out),
+    .sample_i(sample)
 );
 
 spiker_reader #(
@@ -135,7 +144,8 @@ spiker_reader #(
     .rst_ni(rst_ni),
     .test_mode_i(test_mode_i),
     .reg_file_to_ip(reg_file_to_ip),
-    .data_in(data_in)
+    .data_in(data_in),
+    .sample_i(sample)
 ); 
 
 spiker_fake #(
@@ -144,7 +154,10 @@ spiker_fake #(
     .clk_i(clk_i),
     .rst_ni(rst_ni),
     .data_in(data_in),
-    .data_out(data_out)
+    .data_out(data_out),
+    .ready_in(ready),
+    .sample_ready_i(sample_ready),
+    .sample_o(sample)
 );
 
 endmodule : spiker_adapter

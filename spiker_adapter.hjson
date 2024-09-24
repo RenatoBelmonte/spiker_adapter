@@ -42,8 +42,8 @@
               { bits: "0", name: "SAMPLE_READY",
                 desc: "Signals the presence of a new sample."
               }
-              { bits: "1", name: "SAMPLE",
-                desc: "Notifies that the spikes are read."
+              { bits: "1", name: "READY",
+                desc: "Notifies that SPIKER can write."
               }
           ]
         },
@@ -53,14 +53,9 @@
           hwaccess: "hwo",
           hwext: "true",
           fields: [
-              { bits: "1:0", name: "CODE",
-                desc: "The current status code of the accelerator.",
-                enum: [
-                    { value: "0", name: "IDLE", desc: "Accelerator is idle, results are avaialble for read."},
-                    { value: "1", name: "PENDING", desc: "Pending operation. Chaning configuration while pending results in an error."},
-                    { value: "2", name: "ERROR_WRITE", desc: "A configuration change was attempted during pending operation."},
-                    { value: "3", name: "ERROR_OPCODE", desc: "The accelerator was supplied with an unknown opcode."}
-                ]}
+              { bits: "0", name: "SAMPLE",
+                desc: "Signals that SPIKER is ready for the next sample."
+              }
           ]
         }
     ],

@@ -25,7 +25,7 @@ package spiker_adapter_reg_pkg;
     struct packed {
       logic        q;
       logic        qe;
-    } sample;
+    } ready;
   } spiker_adapter_reg2hw_ctrl1_reg_t;
 
   typedef struct packed {
@@ -33,7 +33,7 @@ package spiker_adapter_reg_pkg;
   } spiker_adapter_hw2reg_spikes_result_mreg_t;
 
   typedef struct packed {
-    logic [1:0]  d;
+    logic        d;
   } spiker_adapter_hw2reg_status_reg_t;
 
   // Register -> HW type
@@ -44,8 +44,8 @@ package spiker_adapter_reg_pkg;
 
   // HW -> register type
   typedef struct packed {
-    spiker_adapter_hw2reg_spikes_result_mreg_t [24:0] spikes_result; // [801:2]
-    spiker_adapter_hw2reg_status_reg_t status; // [1:0]
+    spiker_adapter_hw2reg_spikes_result_mreg_t [24:0] spikes_result; // [800:1]
+    spiker_adapter_hw2reg_status_reg_t status; // [0:0]
   } spiker_adapter_hw2reg_t;
 
   // Register offsets
@@ -129,7 +129,7 @@ package spiker_adapter_reg_pkg;
   parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_23_RESVAL = 32'h 0;
   parameter logic [31:0] SPIKER_ADAPTER_SPIKES_RESULT_24_RESVAL = 32'h 0;
   parameter logic [1:0] SPIKER_ADAPTER_CTRL1_RESVAL = 2'h 0;
-  parameter logic [1:0] SPIKER_ADAPTER_STATUS_RESVAL = 2'h 0;
+  parameter logic [0:0] SPIKER_ADAPTER_STATUS_RESVAL = 1'h 0;
 
   // Register index
   typedef enum int {

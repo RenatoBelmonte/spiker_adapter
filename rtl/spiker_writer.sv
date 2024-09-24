@@ -8,8 +8,10 @@ module spiker_writer
     input logic clk_i,
     input logic rst_ni,
     input logic test_mode_i,
-    input  spiker_adapter_reg_pkg::spiker_adapter_hw2reg_file_t ip_to_reg_file,  
-    input logic [WIDTH-1:0] data_out
+    input logic [WIDTH-1:0] data_out,
+    input logic sample_i,
+
+    spiker_adapter_reg_pkg::spiker_adapter_hw2reg_file_t ip_to_reg_file
 );
 
     import spiker_adapter_reg_pkg::* ;
@@ -20,10 +22,15 @@ module spiker_writer
     generate
         genvar i;
         for (i = 0; i < N_REG; i = i + 1) begin
-            assign ip_to_reg_file.spikes_result[i].d = data_out[(i+1)*WIDTH-1 -: WIDTH];
+            always_ff @(posedge clk_i or negedge rst_ni) begin
+                if (!rst_ni) begin
+                    ip_to_reg_file.spikes_result[i].d <= '0;
+                end else if (sample_i) begin
+                    ip_to_reg_file.spikes_result[i].d <= data_out[(i+1)*WIDTH-1 -: WIDTH];
+                end
+            end
         end
     endgenerate
-
 
 
 endmodule
