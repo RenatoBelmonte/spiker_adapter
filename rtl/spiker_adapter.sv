@@ -152,8 +152,8 @@ spiker_fake #(
 ) u_spiker_fake (
     .clk_i(clk_i),
     .rst_ni(rst_ni),
-    .data_in(data_in),
-    .data_out(data_out),
+    .data_in(data_in[N_SPIKES-1:0]),
+    .data_out(data_out[N_SPIKES-1:0]),
     .ready_i(ready),
     .sample_ready_i(sample_ready),
     .sample_o(sample)
