@@ -16,7 +16,6 @@ module spiker_writer
 
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
-    logic [DATA_WIDTH-1:0] data_in_o;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
         if (!rst_ni) begin
