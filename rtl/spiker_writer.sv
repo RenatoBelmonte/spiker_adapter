@@ -24,7 +24,7 @@ module spiker_writer
                     ip_to_reg_file.spikes_result[i].d <= '0;
                 end else if (sample_i) begin
                     ip_to_reg_file.spikes_result[i].d <= data_out_i[(i+1)*WIDTH-1 -: WIDTH];
-                    ip_to_reg_file.status.q <= 1;
+                    ip_to_reg_file.status.d <= 1;
                 end
             end
         end
