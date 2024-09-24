@@ -17,7 +17,6 @@ module spiker_writer
 
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
-    logic [DATA_WIDTH-1:0] data_out;
 
     generate
         genvar i;
