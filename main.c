@@ -20,7 +20,7 @@ int main()
 
     uint32_t volatile *spiker_adapter_ctrl1 = (uint32_t *)(SPIKER_ADAPTER_BASE_ADDR + SPIKER_ADAPTER_CTRL1_REG_OFFSET);
     uint32_t volatile *spiker_adapter_status = (uint32_t *)(SPIKER_ADAPTER_BASE_ADDR + SPIKER_ADAPTER_STATUS_REG_OFFSET);
-    u_int32_t old_ctrl1 = *spiker_adapter_ctrl1;
+    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
 
     *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
 
