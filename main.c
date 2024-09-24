@@ -16,7 +16,7 @@ int main()
 
     uint32_t buffer[BUFFER_SIZE];
     memset(buffer, 0, sizeof (buffer));
-    printf("The address of buffer is %i", &buffer);
+    printf("The address of buffer is %i\n", &buffer);
 
     uint32_t volatile *spiker_adapter_ctrl1 = (uint32_t *)(SPIKER_ADAPTER_BASE_ADDR + SPIKER_ADAPTER_CTRL1_REG_OFFSET);
     uint32_t volatile *spiker_adapter_status = (uint32_t *)(SPIKER_ADAPTER_BASE_ADDR + SPIKER_ADAPTER_STATUS_REG_OFFSET);
@@ -27,7 +27,10 @@ int main()
 
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | (1 & SPIKER_ADAPTER_CTRL1_MASK<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-    printf("Changed the control register: %x\n", *spiker_adapter_ctrl1);
+    printf("the mask is: %x\nChange the control register from: %x to: %x\n", \
+    (1 & SPIKER_ADAPTER_CTRL1_MASK<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT),\
+    old_ctrl1, *spiker_adapter_ctrl1);
+
 
 //    printf("I'm in the function\n");
 //    uint32_t volatile *spiker_adapter_reg = (uint32_t *)(SPIKER_ADAPTER_BASE_ADDR + SPIKER_ADAPTER_SPIKES_0_REG_OFFSET);
