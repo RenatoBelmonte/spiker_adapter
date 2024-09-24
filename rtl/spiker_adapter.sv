@@ -106,8 +106,8 @@ reg_rsp_t from_reg_file_rsp;
 
 // Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
 localparam N_SPIKES = 784;
-localparam int N_REG = ((N_SPIKES + WIDTH - 1) / WIDTH);
-localparam int DATA_WIDTH_SPIKE = N_REG * WIDTH;
+localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH);
+localparam int DATA_WIDTH_SPIKE = N_REG * AXI_DATA_WIDTH;
 
 logic [DATA_WIDTH_SPIKE-1:0] data_in;
 logic [DATA_WIDTH_SPIKE-1:0] data_out;
@@ -121,7 +121,7 @@ assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;
 assign ip_to_reg_file.status.d = sample;
 
 spiker_writer #(
-    .WIDTH(AXI_ADDR_WIDTH),
+    .WIDTH(AXI_DATA_WIDTH),
     .N_SPIKES(N_SPIKES),
     .N_REG(N_REG),
     .DATA_WIDTH(DATA_WIDTH_SPIKE)
@@ -135,7 +135,7 @@ spiker_writer #(
 );
 
 spiker_reader #(
-    .WIDTH(AXI_ADDR_WIDTH),
+    .WIDTH(AXI_DATA_WIDTH),
     .N_SPIKES(N_SPIKES),
     .N_REG(N_REG),
     .DATA_WIDTH(DATA_WIDTH_SPIKE)
