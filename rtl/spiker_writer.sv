@@ -1,3 +1,4 @@
+import spiker_adapter_reg_pkg::* ;
 module spiker_writer
 #(
     parameter int WIDTH = 32,
@@ -14,7 +15,6 @@ module spiker_writer
     output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_file_t ip_to_reg_file
 );
 
-    import spiker_adapter_reg_pkg::* ;
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
     logic [DATA_WIDTH-1:0] data_out;
