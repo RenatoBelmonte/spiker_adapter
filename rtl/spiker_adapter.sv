@@ -154,7 +154,7 @@ spiker_fake #(
     .rst_ni(rst_ni),
     .data_in(data_in),
     .data_out(data_out),
-    .ready_in(ready),
+    .ready_i(ready),
     .sample_ready_i(sample_ready),
     .sample_o(sample)
 );
