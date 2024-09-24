@@ -130,7 +130,7 @@ spiker_writer #(
     .rst_ni(rst_ni),
     .test_mode_i(test_mode_i),
     .reg_file_to_ip(reg_file_to_ip),
-    .data_out(data_out),
+    .data_out_i(data_out),
     .sample_i(sample)
 );
 

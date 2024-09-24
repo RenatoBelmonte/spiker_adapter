@@ -9,7 +9,7 @@ module spiker_writer
     input logic clk_i,
     input logic rst_ni,
     input logic test_mode_i,
-    input logic [WIDTH-1:0] data_out,
+    input logic [WIDTH-1:0] data_out_i,
     input logic sample_i,
     output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
