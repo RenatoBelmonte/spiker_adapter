@@ -144,7 +144,7 @@ spiker_reader #(
     .rst_ni(rst_ni),
     .test_mode_i(test_mode_i),
     .reg_file_to_ip(reg_file_to_ip),
-    .data_in(data_in),
+    .data_in_o(data_in),
     .sample_i(sample)
 ); 
 
