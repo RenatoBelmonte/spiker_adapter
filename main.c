@@ -27,10 +27,10 @@ int main()
     asm volatile ("": : : "memory");
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     asm volatile ("": : : "memory");
-    *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
+    uint32_t new_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
+    *spiker_adapter_ctrl1 = new_ctrl1;
     asm volatile ("": : : "memory");
-    printf("the mask result is: %x\nChange the control register from: %x to: %x\n", \
-    old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT),\
+    printf("I want to write: %x\nChange the control register from: %x to: %x\n", new_ctrl1,\
     old_ctrl1, *spiker_adapter_ctrl1);
 
 
