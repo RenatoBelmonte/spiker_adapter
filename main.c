@@ -27,8 +27,8 @@ int main()
 
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-    printf("the mask is: %x\nChange the control register from: %x to: %x\n", \
-    ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT),\
+    printf("the mask result is: %x\nChange the control register from: %x to: %x\n", \
+    old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT),\
     old_ctrl1, *spiker_adapter_ctrl1);
 
 
