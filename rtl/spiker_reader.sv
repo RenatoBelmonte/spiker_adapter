@@ -1,5 +1,5 @@
 import spiker_adapter_reg_pkg::* ;
-module spiker_writer
+module spiker_reader
 #(
     parameter int WIDTH = 32,
     parameter int N_SPIKES = 784,
