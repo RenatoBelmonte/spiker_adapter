@@ -11,7 +11,7 @@ module spiker_writer
     input logic test_mode_i,
     input logic [DATA_WIDTH-1:0] data_out_i,
     input logic sample_i,
-    output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_status_reg_t spikes_result
+    output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
 
     // Concatenate all the values in reg_file_to_ip.spikes[] into a single DATA_WIDTH-wide signal
@@ -21,9 +21,10 @@ module spiker_writer
         for (i = 0; i < N_REG; i = i + 1) begin
             always_ff @(posedge clk_i or negedge rst_ni) begin
                 if (!rst_ni) begin
-                    spikes_result[i].d <= '0;
+                    ip_to_reg_file.spikes_result[i].d <= '0;
                 end else if (sample_i) begin
-                    spikes_result[i].d <= data_out_i[(i+1)*WIDTH-1 -: WIDTH];
+                    ip_to_reg_file.spikes_result[i].d <= data_out_i[(i+1)*WIDTH-1 -: WIDTH];
+                    ip_to_reg_file.status.q <= 1;
                 end
             end
         end

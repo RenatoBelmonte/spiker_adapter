@@ -118,7 +118,6 @@ logic sample;
 
 assign ready = reg_file_to_ip.ctrl1.ready.q;
 assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;    
-assign ip_to_reg_file.status.d = sample;
 
 spiker_writer #(
     .WIDTH(AXI_DATA_WIDTH),
@@ -129,7 +128,7 @@ spiker_writer #(
     .clk_i(clk_i),
     .rst_ni(rst_ni),
     .test_mode_i(test_mode_i),
-    .ip_to_reg_file(ip_to_reg_file.spikes_result),
+    .ip_to_reg_file(ip_to_reg_file),
     .data_out_i(data_out),
     .sample_i(sample)
 );
