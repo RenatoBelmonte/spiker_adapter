@@ -11,7 +11,7 @@ module spiker_writer
     input logic [WIDTH-1:0] data_out,
     input logic sample_i,
 
-    spiker_adapter_reg_pkg::spiker_adapter_hw2reg_file_t ip_to_reg_file
+    output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_file_t ip_to_reg_file
 );
 
     import spiker_adapter_reg_pkg::* ;
