@@ -4,13 +4,13 @@ module spiker_reader
     parameter int WIDTH = 32,
     parameter int N_SPIKES = 784,
     parameter int N_REG = 24,
-    parameter int DATA_WIDTH = 768
+    parameter int DATA_WIDTH = 800
 ) (
     input logic clk_i,
     input logic rst_ni,
     input logic test_mode_i,
     input  spiker_adapter_reg_pkg::spiker_adapter_reg2hw_t reg_file_to_ip,  
-    output logic [WIDTH-1:0] data_in_o,
+    output logic [DATA_WIDTH-1:0] data_in_o,
     input logic sample_i
 );
 
