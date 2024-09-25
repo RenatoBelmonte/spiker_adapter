@@ -34,7 +34,6 @@ begin
 	begin
 		if rst_ni = '0' then
 			current_state <= IDLE;
-			sample_o <= '0';
 		elsif rising_edge(clk_i) then
 			current_state <= next_state;
 		end if;

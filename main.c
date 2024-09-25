@@ -51,7 +51,7 @@ int main()
     } 
     for (size_t i = 0; i < 24; i++)
     {
-        printf("Check: reg = %x\n", spiker_adapter_res[i]);
+        printf("Check: reg[%i] = %x\n", i, spiker_adapter_res[i]);
     }
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
