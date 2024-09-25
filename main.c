@@ -38,7 +38,7 @@ int main()
     for (size_t i = 0; i < 24; i++)
     {
         printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
-        printf("I'm writing buffer = %x\t", buffer[i] + i + 1);
+        printf("I'm writing buffer = %x\n", buffer[i] + i + 1);
         spiker_adapter_reg[i] = buffer[i] + i + 1;
         asm volatile ("": : : "memory");
     }
