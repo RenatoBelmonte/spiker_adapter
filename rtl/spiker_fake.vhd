@@ -22,7 +22,60 @@ entity spiker_fake is
 end spiker_fake;
 
 architecture Behavioral of spiker_fake is
+
+	-- Define the states
+	type state_type is (IDLE, WORKING, DONE);
+	signal current_state, next_state : state_type;
+
 begin
-	data_out <= data_in;
-    sample_o <= '1';  -- Set sample_out to always be true
+
+	-- State transition process
+	process(clk_i, rst_ni)
+	begin
+		if rst_ni = '0' then
+			current_state <= IDLE;
+			sample_o <= '0';
+		elsif rising_edge(clk_i) then
+			current_state <= next_state;
+		end if;
+	end process;
+
+	-- Next state logic
+	process(current_state, ready_i, sample_ready_i)
+	begin
+		case current_state is
+			when IDLE =>
+				if sample_ready_i = '1' then
+					next_state <= WORKING;
+				else
+					next_state <= IDLE;
+				end if;
+			when WORKING =>
+				if ready_i = '1' then
+					next_state <= DONE;
+				else
+					next_state <= WORKING;
+				end if;
+			when DONE =>
+				next_state <= IDLE;
+			when others =>
+				next_state <= IDLE;
+		end case;
+	end process;
+
+	-- Output logic
+	process(current_state)
+	begin
+		case current_state is
+			when IDLE =>
+				sample_o <= '1';
+			when WORKING =>
+				sample_o <= '0';
+			when DONE =>
+				sample_o <= '1';
+			when others =>
+				sample_o <= '0';
+		end case;
+	end process;
+
 end Behavioral;
