@@ -73,6 +73,7 @@ begin
 				sample_o <= '0';
 			when DONE =>
 				sample_o <= '1';
+				data_out <= data_in;
 			when others =>
 				sample_o <= '0';
 		end case;
