@@ -40,7 +40,7 @@ int main()
         printf("Waiting for the accelerator to be ready\n");
     }
     
-    // Read from memory
+    // Read from memory and write to the accelerator interface
     for (size_t i = 0; i < 24; i++)
     {
         printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
@@ -49,7 +49,7 @@ int main()
         asm volatile ("": : : "memory");
     }
 
-    // SAMPLE_READY <= 1
+    // SAMPLE_READY <= 1 (Acceleretor can read the data)
     *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
     
     // CHECK STATUS OF THE ACCELERATOR
@@ -58,7 +58,7 @@ int main()
         printf("Waiting for the accelerator to be ready\n");
     } 
 
-    // READY <= 0
+    // READY <= 0 (I'm reading the data)
     *spiker_adapter_ctrl1 = old_ctrl1 & (0xFFFFFFFE);
 
     // READ FROM MEMORY
@@ -67,7 +67,7 @@ int main()
         printf("Check: reg[%i] = %x\n", i, spiker_adapter_res[i]);
     }
 
-    // READY <= 1
+    // READY <= 1 (I've read the data)
     *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
     
     //read_from_memory(buffer);
