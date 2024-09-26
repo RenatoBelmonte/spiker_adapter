@@ -6,6 +6,7 @@ dependencies:
   common_cells:           { git: "https://github.com/pulp-platform/common_cells.git", version: 1.21.0 }
   axi:                    { git: "https://github.com/pulp-platform/axi.git", version: 0.39.2 }
   register_interface:     { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.1 }
+  spiker:                 { git: "https://github.com/RenatoBelmonte/spiker.git", ref: "master" }
 sources: 
   #spiker_adapter
   defines:
@@ -14,7 +15,6 @@ sources:
     - gen_sv/spiker_adapter_reg_top.sv
     - rtl/spiker_writer.sv
     - rtl/spiker_reader.sv
-    - rtl/spiker_fake.vhd
     - rtl/spiker_adapter.sv
   include_dirs:
     - /home/renato/Desktop/training/pulpissimo/.bender/git/checkouts/ibex-3d636992cd289cea/vendor/lowrisc_ip/ip/prim/rtl
