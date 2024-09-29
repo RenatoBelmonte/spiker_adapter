@@ -403,3 +403,4 @@ FodyWeavers.xsd
 
 # MY STUFF
 *.sh
+.DS_Store
