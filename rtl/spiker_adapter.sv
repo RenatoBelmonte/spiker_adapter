@@ -136,7 +136,7 @@ spiker_writer #(
     .ip_to_reg_file(ip_to_reg_file),
     .data_out_i(data_out),
     .sample_i(sample),
-    .ready_o(writer_ready)
+    .writer_ready_o(writer_ready)
 );
 
 spiker_reader #(
