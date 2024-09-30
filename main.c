@@ -44,12 +44,12 @@ int main()
     }
 
     // SAMPLE_READY <= 1 (Acceleretor can read the data)
-    old_ctrl1 = *spiker_adapter_ctrl1;
+    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
     printf("Samples are ready\n");
     
     // START <= 1
-    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
+    old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | (1 << SPIKER_ADAPTER_CTRL1_START_BIT);
 
     printf("I've started the accelerator\n");
