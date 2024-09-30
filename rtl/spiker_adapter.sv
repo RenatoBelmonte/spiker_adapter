@@ -121,8 +121,6 @@ logic start;
 assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q & writer_ready;    
 assign start = reg_file_to_ip.ctrl1.start.q;
 
-assign ip_to_reg_file.status.ready.d = ready;
-assign ip_to_reg_file.status.sample.d = sample;
 
 spiker_writer #(
     .WIDTH(AXI_DATA_WIDTH),
@@ -136,6 +134,7 @@ spiker_writer #(
     .ip_to_reg_file(ip_to_reg_file),
     .data_out_i(data_out),
     .sample_i(sample),
+    .ready_i(ready),
     .writer_ready_o(writer_ready)
 );
 

@@ -12,11 +12,15 @@ module spiker_writer
     input logic [DATA_WIDTH-1:0] data_out_i,
     input logic sample_i,
     output logic writer_ready_o,
+    input logic ready_i,
     output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
 
     logic [DATA_WIDTH-1:0] pipe_reg;
     logic pipe_valid;
+
+    assign ip_to_reg_file.status.ready.d = ready_i;
+    assign ip_to_reg_file.status.sample.d = sample_i;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
         if (!rst_ni) begin
