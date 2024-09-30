@@ -119,9 +119,10 @@ logic writer_ready;
 logic start;
 
 assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q & writer_ready;    
+assign start = reg_file_to_ip.ctrl1.start.q;
+
 assign ip_to_reg_file.status.ready.d = ready;
 assign ip_to_reg_file.status.sample.d = sample;
-assign start = reg_file_to_ip.start.q;
 
 spiker_writer #(
     .WIDTH(AXI_DATA_WIDTH),
