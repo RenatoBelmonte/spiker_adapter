@@ -57,7 +57,7 @@ int main()
     }
 
     // SAMPLE_READY <= 1 (Acceleretor can read the data)
-    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
+    old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
     
     // CHECK STATUS OF THE ACCELERATOR
