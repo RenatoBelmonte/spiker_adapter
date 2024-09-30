@@ -41,8 +41,8 @@ int main()
 
     printf("I've started the accelerator\n");
 
-    // CHECK STATUS OF THE ACCELERATOR
-    while ((*spiker_adapter_status & 0x2) == 2)
+    // CHECK STATUS OF THE ACCELERATOR WAITING FOR READY 
+    while ((*spiker_adapter_status & 0x2) != 2) //CHECK simulation TODO
     {
         printf("Waiting for the accelerator to be ready\n");
     }
@@ -61,7 +61,7 @@ int main()
     *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
     
     // CHECK STATUS OF THE ACCELERATOR
-    while ((*spiker_adapter_status & 0x2) == 2)
+    while ((*spiker_adapter_status & 0x2) != 2)
     {
         printf("Waiting for the accelerator to be ready\n");
     }
