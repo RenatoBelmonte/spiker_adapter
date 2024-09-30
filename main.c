@@ -15,7 +15,7 @@ int main()
     printf("Hello World!\n");
 
     uint32_t buffer[BUFFER_SIZE];
-    memset(buffer, 0, sizeof (buffer));
+    memset(buffer, 0xFEFEFEFE, sizeof (buffer));
     printf("The address of buffer is %i\n", &buffer);
 
     // Set up the pointers to the registers
@@ -34,7 +34,20 @@ int main()
 //    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
 //    *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
 
+    // Read from memory (buffer) and write to the accelerator interface (spiker_reg)
+    for (size_t i = 0; i < 24; i++)
+    {
+        printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
+        printf("I'm writing buffer = %x\n", buffer[i]);
+        spiker_adapter_reg[i] = buffer[i] + i + 1;
+        asm volatile ("": : : "memory");
+    }
 
+    // SAMPLE_READY <= 1 (Acceleretor can read the data)
+    old_ctrl1 = *spiker_adapter_ctrl1;
+    *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
+    printf("Samples are ready\n");
+    
     // START <= 1
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | (1 << SPIKER_ADAPTER_CTRL1_START_BIT);
@@ -46,26 +59,7 @@ int main()
     {
         printf("Waiting for the accelerator to be ready\n");
     }
-    
-    // Read from memory and write to the accelerator interface
-    for (size_t i = 0; i < 24; i++)
-    {
-        printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
-        printf("I'm writing buffer = %x\n", buffer[i] + i + 1);
-        spiker_adapter_reg[i] = buffer[i] + i + 1;
-        asm volatile ("": : : "memory");
-    }
-
-    // SAMPLE_READY <= 1 (Acceleretor can read the data)
-    old_ctrl1 = *spiker_adapter_ctrl1;
-    *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-    
-    // CHECK STATUS OF THE ACCELERATOR
-    while ((*spiker_adapter_status & 0x2) != 2)
-    {
-        printf("Waiting for the accelerator to be ready\n");
-    }
-
+   
     // READ FROM MEMORY
     for (size_t i = 0; i < 4; i++)
     {
