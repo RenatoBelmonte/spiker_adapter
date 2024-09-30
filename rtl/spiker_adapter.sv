@@ -153,9 +153,9 @@ spiker_reader #(
     .sample_i(sample)
 ); 
 
-spiker_fake #(
+network #(
     .N_SPIKES(N_SPIKES)
-) u_spiker_fake (
+) u_spiker (
     .clk_i(clk_i),
     .rst_ni(rst_ni),
     .start(start),
