@@ -155,8 +155,8 @@ spiker_reader #(
 network #(
     .N_SPIKES(N_SPIKES)
 ) u_spiker (
-    .clk_i(clk_i),
-    .rst_ni(rst_ni),
+    .clk(clk_i),
+    .rst_n(rst_ni),
     .start(start),
     .sample_ready(sample_ready),
     .ready(ready),
