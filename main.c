@@ -56,7 +56,7 @@ int main()
         asm volatile ("": : : "memory");
     }
 
-    // SAMPLE_READY <= 1 (Acceleretor can read the data)
+    // SAMPLE_READY <= 1 (Accelerator can read the data)
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
     printf("Samples are ready (sample_ready) ctrl1 = %x\n", *spiker_adapter_ctrl1);
