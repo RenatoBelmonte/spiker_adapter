@@ -14,8 +14,13 @@ int main()
     printf("Hello World!\n");
 
     uint32_t buffer[SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT];
-    memset(buffer, 0xFEFEFEFE, sizeof (buffer));
-    printf("The address of buffer is %i\n", &buffer);
+    memset(buffer, 0, sizeof (buffer));
+    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
+    {   
+        buffer[i] = 0xFEFEFEFE;
+    }
+    
+    printf("The address of buffer is %x\n", &buffer);
 
     // Set up the pointers to the registers
     uint32_t volatile *spiker_adapter_ctrl1 = (uint32_t *)(SPIKER_ADAPTER_BASE_ADDR + SPIKER_ADAPTER_CTRL1_REG_OFFSET);
@@ -33,11 +38,19 @@ int main()
 //    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
 //    *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
 
+
+    // SAMPLE_READY <= 1 (Acceleretor can read the data)
+    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
+    *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
+    printf("Samples are ready\n");
+
+/*
     // Read from memory (buffer) ...
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_RESULT_MULTIREG_COUNT; i++)
     {
         printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
     }
+    printf("\n");
     
     // ... and write to the accelerator interface (spiker_reg)
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
@@ -72,7 +85,9 @@ int main()
 
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
-    
+
+*/ 
+
     printf("JOB DONE\n");
     asm volatile ("": : : "memory");
 

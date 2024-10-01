@@ -161,7 +161,7 @@ network #(
     .start(start),
     .sample_ready(sample_ready),
     .ready(ready),
-    .sample(sampe),
+    .sample(sample),
     .in_spikes(data_in[3:0]),
     .out_spikes(data_out[1:0])    
 );
