@@ -13,7 +13,7 @@ int main()
 {
     printf("Hello World!\n");
 
-    uint32_t buffer[SPIKER_ADAPTER_SPIKES_RESULT_MULTIREG_COUNT];
+    uint32_t buffer[SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT];
     memset(buffer, 0xFEFEFEFE, sizeof (buffer));
     printf("The address of buffer is %i\n", &buffer);
 
