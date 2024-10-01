@@ -26,7 +26,7 @@ module spiker_writer
         if (!rst_ni) begin
             pipe_reg <= '0;
             pipe_valid <= 1'b0;
-            writer_ready_o <= 1'b0;
+            writer_ready_o <= 1'b1;
         end else begin
             if (sample_i) begin
                 pipe_reg <= data_out_i;
