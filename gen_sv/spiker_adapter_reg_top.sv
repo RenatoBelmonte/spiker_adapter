@@ -151,14 +151,18 @@ module spiker_adapter_reg_top #(
   logic spikes_result_2_re;
   logic [31:0] spikes_result_3_qs;
   logic spikes_result_3_re;
+  logic ctrl1_sample_ready_qs;
   logic ctrl1_sample_ready_wd;
   logic ctrl1_sample_ready_we;
+  logic ctrl1_start_qs;
   logic ctrl1_start_wd;
   logic ctrl1_start_we;
   logic status_sample_qs;
-  logic status_sample_re;
+  logic status_sample_wd;
+  logic status_sample_we;
   logic status_ready_qs;
-  logic status_ready_re;
+  logic status_ready_wd;
+  logic status_ready_we;
 
   // Register instances
 
@@ -904,66 +908,110 @@ module spiker_adapter_reg_top #(
   );
 
 
-  // R[ctrl1]: V(True)
+  // R[ctrl1]: V(False)
 
   //   F[sample_ready]: 0:0
-  prim_subreg_ext #(
-    .DW    (1)
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
   ) u_ctrl1_sample_ready (
-    .re     (1'b0),
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
     .we     (ctrl1_sample_ready_we),
     .wd     (ctrl1_sample_ready_wd),
-    .d      ('0),
-    .qre    (),
-    .qe     (reg2hw.ctrl1.sample_ready.qe),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
     .q      (reg2hw.ctrl1.sample_ready.q ),
-    .qs     ()
+
+    // to register interface (read)
+    .qs     (ctrl1_sample_ready_qs)
   );
 
 
   //   F[start]: 1:1
-  prim_subreg_ext #(
-    .DW    (1)
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
   ) u_ctrl1_start (
-    .re     (1'b0),
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
     .we     (ctrl1_start_we),
     .wd     (ctrl1_start_wd),
-    .d      ('0),
-    .qre    (),
-    .qe     (reg2hw.ctrl1.start.qe),
+
+    // from internal hardware
+    .de     (1'b0),
+    .d      ('0  ),
+
+    // to internal hardware
+    .qe     (),
     .q      (reg2hw.ctrl1.start.q ),
-    .qs     ()
+
+    // to register interface (read)
+    .qs     (ctrl1_start_qs)
   );
 
 
-  // R[status]: V(True)
+  // R[status]: V(False)
 
   //   F[sample]: 0:0
-  prim_subreg_ext #(
-    .DW    (1)
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
   ) u_status_sample (
-    .re     (status_sample_re),
-    .we     (1'b0),
-    .wd     ('0),
-    .d      (hw2reg.status.sample.d),
-    .qre    (),
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (status_sample_we),
+    .wd     (status_sample_wd),
+
+    // from internal hardware
+    .de     (hw2reg.status.sample.de),
+    .d      (hw2reg.status.sample.d ),
+
+    // to internal hardware
     .qe     (),
     .q      (),
+
+    // to register interface (read)
     .qs     (status_sample_qs)
   );
 
 
   //   F[ready]: 1:1
-  prim_subreg_ext #(
-    .DW    (1)
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
   ) u_status_ready (
-    .re     (status_ready_re),
-    .we     (1'b0),
-    .wd     ('0),
-    .d      (hw2reg.status.ready.d),
-    .qre    (),
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (status_ready_we),
+    .wd     (status_ready_wd),
+
+    // from internal hardware
+    .de     (hw2reg.status.ready.de),
+    .d      (hw2reg.status.ready.d ),
+
+    // to internal hardware
     .qe     (),
     .q      (),
+
+    // to register interface (read)
     .qs     (status_ready_qs)
   );
 
@@ -1133,9 +1181,11 @@ module spiker_adapter_reg_top #(
   assign ctrl1_start_we = addr_hit[29] & reg_we & !reg_error;
   assign ctrl1_start_wd = reg_wdata[1];
 
-  assign status_sample_re = addr_hit[30] & reg_re & !reg_error;
+  assign status_sample_we = addr_hit[30] & reg_we & !reg_error;
+  assign status_sample_wd = reg_wdata[0];
 
-  assign status_ready_re = addr_hit[30] & reg_re & !reg_error;
+  assign status_ready_we = addr_hit[30] & reg_we & !reg_error;
+  assign status_ready_wd = reg_wdata[1];
 
   // Read data return
   always_comb begin
@@ -1258,8 +1308,8 @@ module spiker_adapter_reg_top #(
       end
 
       addr_hit[29]: begin
-        reg_rdata_next[0] = '0;
-        reg_rdata_next[1] = '0;
+        reg_rdata_next[0] = ctrl1_sample_ready_qs;
+        reg_rdata_next[1] = ctrl1_start_qs;
       end
 
       addr_hit[30]: begin

@@ -34,10 +34,8 @@
         },
         { name: "CTRL1",
           desc: "Controls handshaking signal of the accelerator.",
-          swaccess: "wo",
+          swaccess: "rw",
           hwaccess: "hro",
-          hwext: "true",
-          hwqe: "true",
           fields: [
               { bits: "0", name: "SAMPLE_READY",
                 desc: "Signals the presence of a new sample."
@@ -49,9 +47,8 @@
         },
         { name: "STATUS",
           desc: "Contains the current status of the accelerator.",
-          swaccess: "ro",
+          swaccess: "rw",
           hwaccess: "hwo",
-          hwext: "true",
           fields: [
               { bits: "0", name: "SAMPLE",
                 desc: "Signals that SPIKER is ready for the next sample."
