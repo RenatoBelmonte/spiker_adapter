@@ -3,7 +3,6 @@
 #include "pulp.h"
 #include "spiker_adapter.h"
 
-#define BUFFER_SIZE 24
 #define SPIKER_ADAPTER_BASE_ADDR  0x1A400000
 #define SPIKER_ADAPTER_CTRL1_MASK 0x1
 
@@ -14,7 +13,7 @@ int main()
 {
     printf("Hello World!\n");
 
-    uint32_t buffer[BUFFER_SIZE];
+    uint32_t buffer[SPIKER_ADAPTER_SPIKES_RESULT_MULTIREG_COUNT];
     memset(buffer, 0xFEFEFEFE, sizeof (buffer));
     printf("The address of buffer is %i\n", &buffer);
 
