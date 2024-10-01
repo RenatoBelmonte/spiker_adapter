@@ -3,7 +3,7 @@
 #include "pulp.h"
 #include "spiker_adapter.h"
 
-#define BUFFER_SIZE 98
+#define BUFFER_SIZE 24
 #define SPIKER_ADAPTER_BASE_ADDR  0x1A400000
 #define SPIKER_ADAPTER_CTRL1_MASK 0x1
 
@@ -34,11 +34,16 @@ int main()
 //    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
 //    *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
 
-    // Read from memory (buffer) and write to the accelerator interface (spiker_reg)
-    for (size_t i = 0; i < 24; i++)
+    // Read from memory (buffer) ...
+    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_RESULT_MULTIREG_COUNT; i++)
     {
         printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
-        printf("I'm writing buffer = %x\n", buffer[i]);
+    }
+    
+    // ... and write to the accelerator interface (spiker_reg)
+    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
+    {
+        printf("\t I'm writing buffer = %x\n", buffer[i]);
         spiker_adapter_reg[i] = buffer[i] + i + 1;
         asm volatile ("": : : "memory");
     }
