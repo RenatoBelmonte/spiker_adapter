@@ -106,7 +106,7 @@ reg_rsp_t from_reg_file_rsp;
 
 // Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
 localparam N_SPIKES = 784;
-localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH) + 1;
+localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH);
 localparam int DATA_WIDTH_SPIKE = N_REG * AXI_DATA_WIDTH;
 
 logic [DATA_WIDTH_SPIKE-1:0] data_in;
@@ -118,7 +118,8 @@ logic sample;
 logic writer_ready;
 logic start;
 
-assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q & writer_ready;    
+// \todo{check} assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q & writer_ready;    
+assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;    
 assign start = reg_file_to_ip.ctrl1.start.q;
 
 
