@@ -14,11 +14,12 @@ int main()
     printf("Hello World!\n");
 
     uint32_t buffer[SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT];
-    memset(buffer, 0, sizeof (buffer));
-    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
-    {   
-        buffer[i] = 0xFEFEFEFE;
-    }
+    memset(buffer,  0xFEFEFEFE, sizeof (buffer));
+
+//    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
+//    {   
+//        buffer[i] = 0xFEFEFEFE;
+//    }
     
     printf("The address of buffer is %x\n", &buffer);
 
@@ -42,7 +43,7 @@ int main()
     // SAMPLE_READY <= 1 (Acceleretor can read the data)
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-    printf("Samples are ready\n");
+    printf("old ctrl value is %x, new ctl value is %x \nSamples are ready\n", old_ctrl1, *spiker_adapter_ctrl1);
 
 /*
     // Read from memory (buffer) ...
