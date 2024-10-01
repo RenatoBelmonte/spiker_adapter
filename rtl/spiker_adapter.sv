@@ -153,7 +153,8 @@ spiker_reader #(
 ); 
 
 network #(
-    .N_SPIKES(N_SPIKES)
+    .n_cycles(10),
+    .cycles_cnt_bitwidth(5)
 ) u_spiker (
     .clk(clk_i),
     .rst_n(rst_ni),
