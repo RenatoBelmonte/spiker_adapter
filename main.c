@@ -38,13 +38,7 @@ int main()
 //    // READY <= 1
 //    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
 //    *spiker_adapter_ctrl1 = old_ctrl1 | ((1 & SPIKER_ADAPTER_CTRL1_MASK)<<SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-
-
-    // SAMPLE_READY <= 1 (Acceleretor can read the data)
-    uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
-    *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-    printf("old ctrl value is %x, new ctl value is %x \nSamples are ready\n", old_ctrl1, *spiker_adapter_ctrl1);
-
+//    printf("sample_ready = %x", *spiker_adapter_ctrl1);
 /*
     // Read from memory (buffer) ...
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_RESULT_MULTIREG_COUNT; i++)
@@ -52,7 +46,8 @@ int main()
         printf("\t  Reg = %x \t now ", spiker_adapter_res[i]);
     }
     printf("\n");
-    
+*/
+
     // ... and write to the accelerator interface (spiker_reg)
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
     {
@@ -64,13 +59,12 @@ int main()
     // SAMPLE_READY <= 1 (Acceleretor can read the data)
     uint32_t old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | ( 1 << SPIKER_ADAPTER_CTRL1_SAMPLE_READY_BIT);
-    printf("Samples are ready\n");
+    printf("Samples are ready, sample_ready = %x\n", *spiker_adapter_ctrl1);
     
     // START <= 1
     old_ctrl1 = *spiker_adapter_ctrl1;
     *spiker_adapter_ctrl1 = old_ctrl1 | (1 << SPIKER_ADAPTER_CTRL1_START_BIT);
-
-    printf("I've started the accelerator\n");
+    printf("I've started the accelerator, start = %x\n", *spiker_adapter_ctrl1);
 
     // CHECK STATUS OF THE ACCELERATOR WAITING FOR READY 
     while ((*spiker_adapter_status & 0x2) != 2) //CHECK simulation TODO
@@ -87,7 +81,6 @@ int main()
     //read_from_memory(buffer);
     //start_spiker_adapter(); 
 
-*/ 
 
     printf("JOB DONE\n");
     asm volatile ("": : : "memory");
