@@ -20,8 +20,19 @@ module spiker_writer
     logic pipe_valid;
 
     assign ip_to_reg_file.status.ready.d = ready_i;
-    assign ip_to_reg_file.spikes_result[0].d = pipe_reg[WIDTH-1 : 0];
-    assign ip_to_reg_file.spikes_result[1].d = pipe_reg[(2*WIDTH)-1 : WIDTH];
+    
+    generate
+        genvar i;
+        for (i = 0; i < N_REG; i = i + 1) begin
+            always_comb begin
+                if (pipe_reg != '0) begin
+                    ip_to_reg_file.spikes_result[i].d = pipe_reg[(i+1)*WIDTH-1 -: WIDTH];
+                end 
+            end
+        end
+    endgenerate
+
+
    // assign ip_to_reg_file.status.sample.d = sample_i;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
