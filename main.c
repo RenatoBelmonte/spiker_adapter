@@ -15,6 +15,7 @@ int main()
 
     uint32_t buffer[SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT];
     memset(buffer,  0xFEDCBA98, sizeof (buffer));
+    printf("Buffer[0] content is %x\n", buffer[0]);
 
 //    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
 //    {   
@@ -52,7 +53,7 @@ int main()
     for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT - 23; i++)
     {
         //printf("\t I'm writing buffer = %x\n", buffer[i]);
-        spiker_adapter_reg[i] = buffer[i] + i + 1;
+        spiker_adapter_reg[i] = buffer[i];
         asm volatile ("": : : "memory");
     }
 
