@@ -20,10 +20,18 @@ module spiker_reader
     always_ff @(posedge clk_i or negedge rst_ni) begin
         if (!rst_ni) begin
             data_in_o <= '0;
-        end else if (sample_i) begin
+        end else begin
             for (int i = 0; i < N_REG; i = i + 1) begin
                 data_in_o[(i+1)*WIDTH-1 -: WIDTH] <= reg_file_to_ip.spikes[i].q;
             end
+        end
+    end
+
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if (!rst_ni) begin
+            data_in_o <= '0;
+        end else if (sample_i) begin
+            data_in_o <= data_in_o >> 4;
         end
     end
 

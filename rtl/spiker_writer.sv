@@ -20,7 +20,7 @@ module spiker_writer
     logic pipe_valid;
 
     assign ip_to_reg_file.status.ready.d = ready_i;
-    assign ip_to_reg_file.status.sample.d = sample_i;
+   // assign ip_to_reg_file.status.sample.d = sample_i;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
         if (!rst_ni) begin
@@ -51,6 +51,20 @@ module spiker_writer
             end
         end
     endgenerate
+    
+    logic [3:0] sample_count;
 
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if (!rst_ni) begin
+            sample_count <= 4'd0;
+        end else if (sample_i) begin
+            if (sample_count == 4'd14) begin
+                sample_count <= 4'd0;
+                assign ip_to_reg_file.status.sample.d = sample_i;
+            end else begin
+                sample_count <= sample_count + 4'd1;
+            end
+        end
+    end
 
 endmodule

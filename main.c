@@ -14,7 +14,7 @@ int main()
     printf("Hello World!\n");
 
     uint32_t buffer[SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT];
-    memset(buffer,  0xFEFEFEFE, sizeof (buffer));
+    memset(buffer,  0xFEDCBA98, sizeof (buffer));
 
 //    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)
 //    {   
@@ -66,12 +66,14 @@ int main()
     *spiker_adapter_ctrl1 = old_ctrl1 | (1 << SPIKER_ADAPTER_CTRL1_START_BIT);
     printf("I've started the accelerator (start) ctrl1 = %x\n", *spiker_adapter_ctrl1);
 
+
     // CHECK STATUS OF THE ACCELERATOR WAITING FOR READY 
-    while ((*spiker_adapter_status & 0x2) != 2) //CHECK simulation TODO
+    while ((*spiker_adapter_status & 0x1) != 1) //CHECK simulation TODO
     {
-        printf("Waiting for the accelerator to be ready\n");
+        printf("Waiting for the accelerator to be ready\t ctrl = %x\n", *spiker_adapter_status);
     }
-   
+
+
     // READ FROM MEMORY
     for (size_t i = 0; i < 4; i++)
     {
