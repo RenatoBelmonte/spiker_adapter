@@ -22,6 +22,7 @@ module spiker_reader
 
 logic [31:0] sample_count;
 logic finished_sample;
+logic [DATA_WIDTH-1:0] data_pipe;
 
 always_ff @(posedge clk_i or negedge rst_ni) begin
     if (!rst_ni) begin
@@ -79,6 +80,7 @@ always_ff @(posedge clk_i or negedge rst_ni) begin
         data_in_o <= '0;
         sample_ready_o <= 1'b0;
         start_o <= 1'b0;
+        data_pipe <= '0;
     end else begin
         case (state)
             IDLE: begin
