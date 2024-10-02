@@ -20,11 +20,12 @@ module spiker_reader
 //assign start = reg_file_to_ip.ctrl1.start.q;
 
 logic [DATA_WIDTH-1:0] data_pipe;
-always_comb begin
-    for (int i = 0; i < N_REG; i = i + 1) begin
+genvar i;
+generate
+    for (i = 0; i < N_REG; i = i + 1) begin : gen_data_pipe
         assign data_pipe[(i+1)*WIDTH-1 -: WIDTH] = reg_file_to_ip.spikes[i].q;
     end
-end
+endgenerate
 
 logic [31:0] sample_count;
 logic finished_sample;
