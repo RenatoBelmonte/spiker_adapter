@@ -20,6 +20,8 @@ module spiker_writer
     logic pipe_valid;
 
     assign ip_to_reg_file.status.ready.d = ready_i;
+    assign ip_to_reg_file.spikes_result[0].d = pipe_reg[WIDTH-1 : 0];
+    assign ip_to_reg_file.spikes_result[1].d = pipe_reg[(2*WIDTH)-1 : WIDTH];
    // assign ip_to_reg_file.status.sample.d = sample_i;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
@@ -28,7 +30,7 @@ module spiker_writer
             pipe_valid <= 1'b0;
             writer_ready_o <= 1'b1;
         end else begin
-            if (ready_i) begin
+            if (sample_i) begin
                 pipe_reg <= data_out_i;
                 pipe_valid <= 1'b1;
                 writer_ready_o <= 1'b0;
@@ -39,18 +41,20 @@ module spiker_writer
         end
     end
 
-    generate
-        genvar i;
-        for (i = 0; i < N_REG; i = i + 1) begin
-            always_ff @(posedge clk_i or negedge rst_ni) begin
-                if (!rst_ni) begin
-                    ip_to_reg_file.spikes_result[i].d <= '0;
-                end else if (sample_i) begin
-                    ip_to_reg_file.spikes_result[i].d <= pipe_reg[(i+1)*WIDTH-1 -: WIDTH];
-                end
-            end
-        end
-    endgenerate
+// ADD a FSM o manage the sample signal better
+//
+//    generate
+//        genvar i;
+//        for (i = 0; i < N_REG; i = i + 1) begin
+//            always_ff @(posedge clk_i or negedge rst_ni) begin
+//                if (!rst_ni) begin
+//                    ip_to_reg_file.spikes_result[i].d <= '0;
+//                end else if (sample_i) begin
+//                    ip_to_reg_file.spikes_result[i].d <= pipe_reg[(i+1)*WIDTH-1 -: WIDTH];
+//                end
+//            end
+//        end
+//    endgenerate
     
     logic [3:0] sample_count;
 
@@ -62,6 +66,7 @@ module spiker_writer
             if (sample_count == 4'd14) begin
                 sample_count <= 4'd0;
                 ip_to_reg_file.status.sample.d <= sample_i;
+                ip_to_reg_file.status.sample.de <= 1'b1; // \explanation{This is the signal that will be used to trigger the software reading}
             end else begin
                 // ip_to_reg_file.status.sample.d <= 1'b0;
                 sample_count <= sample_count + 4'd1;

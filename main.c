@@ -72,7 +72,7 @@ int main()
     // CHECK STATUS OF THE ACCELERATOR WAITING FOR READY 
     while ((*spiker_adapter_status & 0x1) != 1) //CHECK simulation TODO
     {
-        printf("Waiting for the accelerator to be ready\t ctrl = %x\n", *spiker_adapter_status);
+        printf("Waiting for the accelerator to be ready\t status = %x\n", *spiker_adapter_status);
     }
 
 
