@@ -19,13 +19,6 @@ module spiker_reader
 //assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;    
 //assign start = reg_file_to_ip.ctrl1.start.q;
 
-logic [DATA_WIDTH-1:0] data_pipe;
-genvar i;
-generate
-    for (i = 0; i < N_REG; i = i + 1) begin : gen_data_pipe
-        assign data_pipe[(i+1)*WIDTH-1 -: WIDTH] = reg_file_to_ip.spikes[i].q;
-    end
-endgenerate
 
 logic [31:0] sample_count;
 logic finished_sample;
@@ -91,6 +84,9 @@ always_ff @(posedge clk_i or negedge rst_ni) begin
             IDLE: begin
                 sample_ready_o <= 1'b0;
                 start_o <= 1'b0;
+                for (int i = 0; i < N_REG; i = i + 1) begin
+                    data_pipe[(i+1)*WIDTH-1 -: WIDTH] <= reg_file_to_ip.spikes[i].q;
+                end
             end
             START: begin
                 data_in_o <= data_pipe;
