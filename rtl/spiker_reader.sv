@@ -98,7 +98,7 @@ always_ff @(posedge clk_i or negedge rst_ni) begin
             end
             SAMPLE: begin
                 if (sample_i) begin
-                    data_pipe <= data_pipe << 4;
+                    data_pipe <= data_pipe >> 4;
                     sample_ready_o <= 1'b1;
                 end else begin
                     data_in_o <= data_pipe;

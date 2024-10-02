@@ -15,7 +15,7 @@ int main()
 
     uint32_t buffer[SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT];
     memset(buffer,  0, sizeof (buffer));
-    buffer[0] = 0xFEDCBA98;
+    buffer[0] = 0x89ABCDEF;
     printf("Buffer[0] content is %x\n", buffer[0]);
 
 //    for (size_t i = 0; i < SPIKER_ADAPTER_SPIKES_MULTIREG_COUNT; i++)

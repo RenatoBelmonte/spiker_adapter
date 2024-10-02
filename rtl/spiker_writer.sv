@@ -57,10 +57,11 @@ module spiker_writer
     always_ff @(posedge clk_i or negedge rst_ni) begin
         if (!rst_ni) begin
             sample_count <= 4'd0;
+            ip_to_reg_file.status.sample.d <= 1'b0;  
         end else if (sample_i) begin
             if (sample_count == 4'd14) begin
                 sample_count <= 4'd0;
-                ip_to_reg_file.status.sample.d <= sample_i;
+                //ip_to_reg_file.status.sample.d <= sample_i;
             end else begin
                 ip_to_reg_file.status.sample.d <= 1'b0;
                 sample_count <= sample_count + 4'd1;
