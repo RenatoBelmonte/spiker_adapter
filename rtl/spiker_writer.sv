@@ -62,6 +62,7 @@ module spiker_writer
                 sample_count <= 4'd0;
                 ip_to_reg_file.status.sample.d <= sample_i;
             end else begin
+                ip_to_reg_file.status.sample.d <= 1'b0;
                 sample_count <= sample_count + 4'd1;
             end
         end
