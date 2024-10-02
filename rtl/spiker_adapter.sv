@@ -118,9 +118,9 @@ logic sample;
 logic writer_ready;
 logic start;
 
-// \todo{check} assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q & writer_ready;    
-assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;    
-assign start = reg_file_to_ip.ctrl1.start.q;
+//// \todo{check} assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q & writer_ready;    
+//assign sample_ready = reg_file_to_ip.ctrl1.sample_ready.q;    
+//assign start = reg_file_to_ip.ctrl1.start.q;
 
 
 spiker_writer #(
@@ -150,7 +150,9 @@ spiker_reader #(
     .test_mode_i(test_mode_i),
     .reg_file_to_ip(reg_file_to_ip),
     .data_in_o(data_in),
-    .sample_i(sample)
+    .sample_i(sample),
+    .sample_ready_o(sample_ready),
+    .start_o(start)
 ); 
 
 network #(
