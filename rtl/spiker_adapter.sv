@@ -112,6 +112,8 @@ localparam int DATA_WIDTH_SPIKE = N_REG * AXI_DATA_WIDTH;
 logic [DATA_WIDTH_SPIKE-1:0] data_in;
 logic [DATA_WIDTH_SPIKE-1:0] data_out;
 
+logic [1:0] spiker_out;
+assign data_out = {spiker_out, 2'b0};
 logic ready;
 logic sample_ready;
 logic sample;
@@ -166,7 +168,7 @@ network #(
     .ready(ready),
     .sample(sample),
     .in_spikes(data_in[3:0]),
-    .out_spikes(data_out[1:0])    
+    .out_spikes(spiker_out)    
 );
 
 endmodule : spiker_adapter
