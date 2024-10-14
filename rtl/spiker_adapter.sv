@@ -106,13 +106,13 @@ reg_rsp_t from_reg_file_rsp;
 
 // Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
 localparam N_SPIKES = 784;
-localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH);
+localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH) - 1;
 localparam int DATA_WIDTH_SPIKE = N_REG * AXI_DATA_WIDTH;
 
 logic [DATA_WIDTH_SPIKE-1:0] data_in;
-logic [DATA_WIDTH_SPIKE-1:0] data_out;
+logic [32:0] data_out;
 
-logic [1:0] spiker_out;
+logic [9:0] spiker_out;
 assign data_out = {'0, spiker_out};
 logic ready;
 logic sample_ready;
@@ -167,7 +167,7 @@ network #(
     .sample_ready(sample_ready),
     .ready(ready),
     .sample(sample),
-    .in_spikes(data_in[3:0]),
+    .in_spikes(data_in),
     .out_spikes(spiker_out)    
 );
 
