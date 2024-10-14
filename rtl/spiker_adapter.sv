@@ -158,17 +158,14 @@ spiker_reader #(
     .start_o(start)
 ); 
 
-network #(
-    .n_cycles(10),
-    .cycles_cnt_bitwidth(5)
-) u_spiker (
+network u_spiker (
     .clk(clk_i),
     .rst_n(rst_ni),
     .start(start),
     .sample_ready(sample_ready),
     .ready(ready),
     .sample(sample),
-    .in_spikes(data_in),
+    .in_spikes(data_in[N_SPIKES-1:0]),
     .out_spikes(spiker_out)    
 );
 
