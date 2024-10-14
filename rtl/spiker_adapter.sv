@@ -127,10 +127,7 @@ logic start;
 
 
 spiker_writer #(
-    .WIDTH(AXI_DATA_WIDTH),
-    .N_SPIKES(N_SPIKES),
-    .N_REG(N_REG),
-    .DATA_WIDTH(AXI_DATA_WIDTH)
+    .WIDTH(AXI_DATA_WIDTH)
 ) u_spiker_writer (
     .clk_i(clk_i),
     .rst_ni(rst_ni),
