@@ -1,38 +1,24 @@
 import spiker_adapter_reg_pkg::* ;
 module spiker_writer
 #(
-    parameter int WIDTH = 32,
-    parameter int N_SPIKES = 784,
-    parameter int N_REG = 24,
-    parameter int DATA_WIDTH = 800
+    parameter int WIDTH = 32
 ) (
     input logic clk_i,
     input logic rst_ni,
     input logic test_mode_i,
-    input logic [DATA_WIDTH-1:0] data_out_i,
+    input logic [WIDTH-1:0] data_out_i,
     input logic sample_i,
     output logic writer_ready_o,
     input logic ready_i,
     output spiker_adapter_reg_pkg::spiker_adapter_hw2reg_t ip_to_reg_file
 );
 
-    logic [DATA_WIDTH-1:0] pipe_reg;
+    logic [WIDTH-1:0] pipe_reg;
     logic pipe_valid;
 
     assign ip_to_reg_file.status.ready.d = ready_i;
-    
-    generate
-        genvar i;
-        for (i = 0; i < N_REG; i = i + 1) begin
-            always_comb begin
-                if (pipe_reg != '0) begin
-                    ip_to_reg_file.spikes_result[i].d = pipe_reg[(i+1)*WIDTH-1 -: WIDTH];
-                end 
-            end
-        end
-    endgenerate
 
-
+    assign ip_to_reg_file.spikes_result[0].d = pipe_reg;
    // assign ip_to_reg_file.status.sample.d = sample_i;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
@@ -52,20 +38,6 @@ module spiker_writer
         end
     end
 
-// ADD a FSM o manage the sample signal better
-//
-//    generate
-//        genvar i;
-//        for (i = 0; i < N_REG; i = i + 1) begin
-//            always_ff @(posedge clk_i or negedge rst_ni) begin
-//                if (!rst_ni) begin
-//                    ip_to_reg_file.spikes_result[i].d <= '0;
-//                end else if (sample_i) begin
-//                    ip_to_reg_file.spikes_result[i].d <= pipe_reg[(i+1)*WIDTH-1 -: WIDTH];
-//                end
-//            end
-//        end
-//    endgenerate
     
     logic [3:0] sample_count;
 

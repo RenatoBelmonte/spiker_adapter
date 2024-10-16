@@ -106,13 +106,14 @@ reg_rsp_t from_reg_file_rsp;
 
 // Calculate the DATA_WIDTH as the minimum number of 32-bit registers to hold all the 1-bit spikes
 localparam N_SPIKES = 784;
-localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH) - 1;
+localparam SPIKES_OUT = 10;
+localparam int N_REG = ((N_SPIKES + AXI_DATA_WIDTH - 1) / AXI_DATA_WIDTH);
 localparam int DATA_WIDTH_SPIKE = N_REG * AXI_DATA_WIDTH;
 
 logic [DATA_WIDTH_SPIKE-1:0] data_in;
-logic [32:0] data_out;
+logic [AXI_ADDR_WIDTH-1:0] data_out;
 
-logic [9:0] spiker_out;
+logic [SPIKES_OUT-1:0] spiker_out;
 assign data_out = {'0, spiker_out};
 logic ready;
 logic sample_ready;
@@ -126,10 +127,7 @@ logic start;
 
 
 spiker_writer #(
-    .WIDTH(AXI_DATA_WIDTH),
-    .N_SPIKES(N_SPIKES),
-    .N_REG(N_REG),
-    .DATA_WIDTH(DATA_WIDTH_SPIKE)
+    .WIDTH(AXI_DATA_WIDTH)
 ) u_spiker_writer (
     .clk_i(clk_i),
     .rst_ni(rst_ni),
@@ -157,17 +155,14 @@ spiker_reader #(
     .start_o(start)
 ); 
 
-network #(
-    .n_cycles(10),
-    .cycles_cnt_bitwidth(5)
-) u_spiker (
+network u_spiker (
     .clk(clk_i),
     .rst_n(rst_ni),
     .start(start),
     .sample_ready(sample_ready),
     .ready(ready),
     .sample(sample),
-    .in_spikes(data_in),
+    .in_spikes(data_in[N_SPIKES-1:0]),
     .out_spikes(spiker_out)    
 );
 
